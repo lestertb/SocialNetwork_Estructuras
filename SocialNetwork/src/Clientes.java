@@ -17,9 +17,9 @@ public class Clientes {
     String nombre;
     String apellido1;
     String apellido2;
-    String fotografia;
+    String urlImage;
 
-    public Clientes(String nombreUsuario, String password, String pais, String ciudad, int cedula, String nombre, String apellido1, String apellido2, String fotografia) {
+    public Clientes(String nombreUsuario, String password, String pais, String ciudad, int cedula, String nombre, String apellido1, String apellido2, String urlImage) {
         this.nombreUsuario = nombreUsuario;
         this.password = password;
         this.pais = pais;
@@ -28,7 +28,7 @@ public class Clientes {
         this.nombre = nombre;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
-        this.fotografia = fotografia;
+        this.urlImage = urlImage;
     }
 
     public String getNombreUsuario() {
@@ -95,12 +95,12 @@ public class Clientes {
         this.apellido2 = apellido2;
     }
 
-    public String getFotografia() {
-        return fotografia;
+    public String geturlImage() {
+        return urlImage;
     }
 
-    public void setFotografia(String fotografia) {
-        this.fotografia = fotografia;
+    public void seturlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
     
 }
