@@ -29,7 +29,8 @@ public class Clientes {
 
     public Clientes() {
     }
-    
+
+
     public Clientes(String nombreUsuario, String password, String pais, String ciudad, int cedula, String nombre, String apellido1, String apellido2, String urlImage) {
         this.nombreUsuario = nombreUsuario;
         this.password = password;

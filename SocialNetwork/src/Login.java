@@ -18,12 +18,12 @@ public class Login extends javax.swing.JFrame {
      * Creates new form mainFrame
      */
    
-  Clientes admin = new Clientes("admin","password","Costa Rica", "San Jose",
-                123456789, "Lester","Trejos","Bermudez","src/Fotografias/Imagen1.jpg");
+  
+    
+
 
     public Login() {
         initComponents();
-        
     }
 
     /**
@@ -85,7 +85,7 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtUsuario)
                             .addComponent(txtcontraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))))
-                .addContainerGap(280, Short.MAX_VALUE))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,7 +102,7 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnlogin)
                     .addComponent(btnregistrarse))
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         pack();
@@ -122,6 +122,7 @@ public class Login extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+    
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -166,7 +167,16 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField txtcontraseña;
     // End of variables declaration//GEN-END:variables
  public void validarUsuario() {
-        Clientes single = Clientes.getInstance();
+    Clientes admin = Clientes.getInstance();
+    admin.nombreUsuario = "admin";
+    admin.password = "password";
+    admin.pais = "Costa Rica";
+    admin.ciudad = "San Jose";
+    admin.cedula = 1;
+    admin.nombre = "name";
+    admin.apellido1 = "lastname";
+    admin.apellido2 = "lastname2";
+    admin.urlImage = "src/Fotografias/Imagen1.jpg";
         if (txtUsuario.getText().equals(admin.nombreUsuario)) {
             if (txtcontraseña.getText().equals(admin.password)) {
                 Prueba prueba = new Prueba();//Crear el Frame2 XD
@@ -179,6 +189,4 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Usuario incorrecto");
         }
     }
-
-
 }
