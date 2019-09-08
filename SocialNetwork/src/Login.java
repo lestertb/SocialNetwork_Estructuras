@@ -24,6 +24,7 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
+        creatUserAdmin();
     }
 
     /**
@@ -37,11 +38,11 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JTextField();
+        txtUser = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtcontraseña = new javax.swing.JTextField();
-        btnlogin = new javax.swing.JButton();
-        btnregistrarse = new javax.swing.JButton();
+        txtpassword = new javax.swing.JTextField();
+        btnSignIn = new javax.swing.JButton();
+        btnSignUp = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -52,23 +53,23 @@ public class Login extends javax.swing.JFrame {
 
         jLabel3.setText("Contraseña");
 
-        txtcontraseña.addActionListener(new java.awt.event.ActionListener() {
+        txtpassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcontraseñaActionPerformed(evt);
+                txtpasswordActionPerformed(evt);
             }
         });
 
-        btnlogin.setText("Login");
-        btnlogin.addActionListener(new java.awt.event.ActionListener() {
+        btnSignIn.setText("Sign in");
+        btnSignIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnloginActionPerformed(evt);
+                btnSignInActionPerformed(evt);
             }
         });
 
-        btnregistrarse.setText("Registrarse");
-        btnregistrarse.addActionListener(new java.awt.event.ActionListener() {
+        btnSignUp.setText("Sign Up");
+        btnSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnregistrarseActionPerformed(evt);
+                btnSignUpActionPerformed(evt);
             }
         });
 
@@ -80,18 +81,18 @@ public class Login extends javax.swing.JFrame {
                 .addGap(102, 102, 102)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnlogin)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                        .addComponent(btnregistrarse))
+                        .addComponent(btnSignIn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addComponent(btnSignUp))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(54, 54, 54)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUsuario)
-                            .addComponent(txtcontraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))))
-                .addContainerGap(178, Short.MAX_VALUE))
+                            .addComponent(txtUser)
+                            .addComponent(txtpassword, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,34 +100,34 @@ public class Login extends javax.swing.JFrame {
                 .addGap(79, 79, 79)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtcontraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnlogin)
-                    .addComponent(btnregistrarse))
+                    .addComponent(btnSignIn)
+                    .addComponent(btnSignUp))
                 .addContainerGap(88, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnregistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarseActionPerformed
-        Registro fr = new Registro();//Crear el FrameRegistro XD
+    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
+        SignUp fr = new SignUp();//Crear el FrameRegistro XD
         fr.setVisible(true);//Muestre el FrameRegistro
         dispose();//Eliminar el Frame actual
-    }//GEN-LAST:event_btnregistrarseActionPerformed
+    }//GEN-LAST:event_btnSignUpActionPerformed
 
-    private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
-        validarUsuario();
-    }//GEN-LAST:event_btnloginActionPerformed
+    private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
+        validateUser();
+    }//GEN-LAST:event_btnSignInActionPerformed
 
-    private void txtcontraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontraseñaActionPerformed
+    private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtcontraseñaActionPerformed
+    }//GEN-LAST:event_txtpasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,40 +164,46 @@ public class Login extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnlogin;
-    private javax.swing.JButton btnregistrarse;
+    private javax.swing.JButton btnSignIn;
+    private javax.swing.JButton btnSignUp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField txtUsuario;
-    private javax.swing.JTextField txtcontraseña;
+    private javax.swing.JTextField txtUser;
+    private javax.swing.JTextField txtpassword;
     // End of variables declaration//GEN-END:variables
- public void validarUsuario() {
-    Clientes admin = Clientes.getInstance();
-    admin.nombreUsuario = "admin";
+ 
+  
+    public void creatUserAdmin(){
+    Client admin = Client.getInstance();
+    admin.userName = "admin";
     admin.password = "password";
-    admin.pais = "Costa Rica";
-    admin.ciudad = "San Jose";
-    admin.cedula = 1;
-    admin.nombre = "name";
-    admin.apellido1 = "lastname";
-    admin.apellido2 = "lastname2";
-    admin.urlImage = "src/Fotografias/Imagen1.jpg";
-        if (txtUsuario.getText().equals(admin.nombreUsuario)) {
-            if (txtcontraseña.getText().equals(admin.password)) {
+    admin.country = "Costa Rica";
+    admin.city = "San Jose";
+    admin.id = 1;
+    admin.name = "name";
+    admin.lastName1 = "lastname";
+    admin.lastName2 = "lastname2";
+    admin.urlImage = "src/Images/Image1.jpg";
+    }
+    
+    public void validateUser() {
+        if (txtUser.getText().equals("admin")){
+            if (txtpassword.getText().equals("password")) {
                 Prueba prueba = new Prueba();//Crear el Frame2 XD
                 prueba.setVisible(true);//Muestre el frame2
                 dispose();//Eliminar el Frame actual
             } else {
-                JOptionPane.showMessageDialog(null, "Pass incorrecto");
+                JOptionPane.showMessageDialog(null, "");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Usuario incorrecto");
+            JOptionPane.showMessageDialog(null, "");
         }
     }
 }
