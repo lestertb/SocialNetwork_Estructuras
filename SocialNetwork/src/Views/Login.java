@@ -34,6 +34,10 @@ public class Login extends javax.swing.JFrame {
         creatUserAdmin();
     }
 
+    //meethod to send username to others frames
+    public static String userName1 = "";
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,7 +60,7 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setText("Usuario");
+        jLabel2.setText("User");
 
         txtUser.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -64,7 +68,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Contraseña");
+        jLabel3.setText("Password");
 
         btnSignIn.setText("Sign In");
         btnSignIn.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +112,7 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(btnSignIn)
                         .addGap(18, 18, 18)
                         .addComponent(btnSignUp)))
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,9 +140,9 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
-        SignUp fr = new SignUp();//Crear el FrameRegistro XD
-        fr.setVisible(true);//Muestre el FrameRegistro
-        dispose();//Eliminar el Frame actual
+        SignUp fr = new SignUp();//Create signUp Frame XD
+        fr.setVisible(true);//Show signUp Frame
+        dispose();//Delete actual frame
     }//GEN-LAST:event_btnSignUpActionPerformed
     //Detect enter to sign in
     private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
@@ -225,7 +229,7 @@ public class Login extends javax.swing.JFrame {
         String urlImage = "";
         metClient.InsertOrdered(userName, password,
         country, city, id, name, lastName1,
-        lastName2, urlImage);
+        lastName2, urlImage);      
     }
     
     //Validate the login
@@ -251,7 +255,8 @@ public class Login extends javax.swing.JFrame {
                             dispose();//Close actual Frame
                             return;
                         }else{
-                            UserFrame userFrame = new UserFrame();//Create adminFrame
+                            userName1 = txtUser.getText();
+                            UserFrame userFrame = new UserFrame();//Create adminFrame                          
                             userFrame.setVisible(true);//Show adminFrame
                             dispose();//Close actual Frame
                             return;

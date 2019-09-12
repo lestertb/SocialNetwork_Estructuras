@@ -8,10 +8,12 @@ package Classes;
 
 /**
  *
- * @author marco
+ * @author marco 
  */
 //Class to create Users
 public class Client {
+
+    public Client sig = null;
 
     public Client(String userName1) {
     }
@@ -25,6 +27,7 @@ public class Client {
     public String lastName2;
     public String urlImage;
     public Client next, prev;
+    public FriendList nextList;
     
     //Create the instance to get the user  
     public static Client instance = null;
@@ -42,7 +45,7 @@ public class Client {
     
     //Constructor with params to generate the new user
     
-      public Client(String userName, String password, String country, String city, int id, String name, String lastName1, String lastName2, String urlImage) {
+    public Client(String userName, String password, String country, String city, int id, String name, String lastName1, String lastName2, String urlImage) {
         this.userName = userName;
         this.password = password;
         this.country = country;
@@ -54,6 +57,6 @@ public class Client {
         this.urlImage = urlImage;
         this.next = this.prev = null;
     }
-    
-   
+
+
 }

@@ -79,7 +79,7 @@ public class methodsClient {
             last.next = head;
             return true;
         }
-        // back up the head in a auxiliar varible
+        // back up the head in an auxiliar varible
         Client aux = head;
         while (aux != null) {
             // Already exist?
@@ -148,5 +148,36 @@ public class methodsClient {
         }
         return null;
     }
+    
+    
+       public boolean delete(String userName){
+        Client aux = searchXUserName(userName);
+       if (aux == null) {
+           JOptionPane.showMessageDialog(null, "Doesn't exist");
+           return false;          
+       }
+       
+       if (aux == head){
+          if(head.sig == null){
+          head = last = null;
+          }else{
+          head = head.sig;
+          head.prev = null;
+          }
+          return true;
+       }
+       
+       if(aux == last){
+       last= last.prev;
+       last.next = null;
+       return true;
+       
+       }
+       aux.prev.next = aux.next;
+       aux.next.prev = aux.prev;
+       return true;
+   }
+       
+    
     
 }

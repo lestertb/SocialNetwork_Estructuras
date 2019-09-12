@@ -5,17 +5,37 @@
  */
 package Views;
 
+import Classes.*;
+import Methods.*;
+import Views.*;
+import javax.swing.*;
+
+
+
 /**
  *
- * @author Lester Trejos
+ * @author andrey
  */
 public class UserFrame extends javax.swing.JFrame {
+        DefaultListModel<String> listModel = new DefaultListModel<>(); 
+        methodsClient metClient = methodsClient.getInstance();
+        methodsFriendList metFriendList = methodsFriendList.getInstance();
+        
+
 
     /**
      * Creates new form UserFrame
      */
     public UserFrame() {
         initComponents();
+        //method to get username
+         Login login = new Login();
+         lblUser.setText(login.userName1);
+         //method to get list name
+         AddFriendList list = new AddFriendList();
+         lblList.setText(list.listName);
+         lblList.hide();
+         
     }
 
     /**
@@ -27,21 +47,181 @@ public class UserFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblUser = new javax.swing.JLabel();
+        bttnChange = new javax.swing.JButton();
+        bttnShow = new javax.swing.JButton();
+        bttnOut = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listClient = new javax.swing.JList<>();
+        bttnDelete = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        bttnAddList = new javax.swing.JButton();
+        bttnShowList = new javax.swing.JButton();
+        lblList = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblUser.setText("user");
+
+        bttnChange.setText("Change data");
+        bttnChange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnChangeActionPerformed(evt);
+            }
+        });
+
+        bttnShow.setText("Show data");
+        bttnShow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnShowActionPerformed(evt);
+            }
+        });
+
+        bttnOut.setText("Log out");
+        bttnOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnOutActionPerformed(evt);
+            }
+        });
+
+        jScrollPane1.setViewportView(listClient);
+
+        bttnDelete.setText("Delete Account");
+        bttnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnDeleteActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Welcome");
+
+        bttnAddList.setText("Add Friend List");
+        bttnAddList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnAddListActionPerformed(evt);
+            }
+        });
+
+        bttnShowList.setText("Show Friend List");
+        bttnShowList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnShowListActionPerformed(evt);
+            }
+        });
+
+        lblList.setText("fl");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(bttnShow)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bttnChange))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(bttnDelete)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(bttnOut))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bttnAddList)
+                                    .addComponent(bttnShowList))
+                                .addGap(0, 60, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblList)
+                        .addGap(16, 16, 16))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblUser)
+                    .addComponent(jLabel1)
+                    .addComponent(lblList))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(bttnAddList)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bttnShowList)))
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bttnChange)
+                    .addComponent(bttnShow))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bttnOut)
+                    .addComponent(bttnDelete))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bttnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnShowActionPerformed
+        //Print user data
+        String user = lblUser.getText();
+        Client aux = metClient.searchXUserName(user);
+        PrintXData(aux);
+        
+    }//GEN-LAST:event_bttnShowActionPerformed
+
+    private void bttnOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnOutActionPerformed
+        //exit to login frame
+        Login login = new Login();
+        login.show();
+        this.dispose();
+    }//GEN-LAST:event_bttnOutActionPerformed
+
+    private void bttnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnChangeActionPerformed
+       // go to changeData Frame
+        ChangeData change = new ChangeData();
+        change.show();
+        this.dispose();
+    }//GEN-LAST:event_bttnChangeActionPerformed
+
+    private void bttnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnDeleteActionPerformed
+        //delete user
+        String user = lblUser.getText();
+        metClient.delete(user);
+        JOptionPane.showMessageDialog(null, "Deleted.");
+        Login login = new Login();
+        login.show();
+        this.dispose();
+        
+    }//GEN-LAST:event_bttnDeleteActionPerformed
+
+    private void bttnAddListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnAddListActionPerformed
+        AddFriendList add = new AddFriendList();
+        add.show();
+        this.dispose();
+    }//GEN-LAST:event_bttnAddListActionPerformed
+
+    private void bttnShowListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnShowListActionPerformed
+        printList();
+    }//GEN-LAST:event_bttnShowListActionPerformed
 
     /**
      * @param args the command line arguments
@@ -77,7 +257,46 @@ public class UserFrame extends javax.swing.JFrame {
             }
         });
     }
-
+    //get aux from user and show data
+    public void PrintXData(Client aux){
+        listModel.clear();
+        listModel.addElement("Name: " + aux.name );     
+        listModel.addElement("Last Name: " + aux.lastName1 + " "+aux.lastName2);
+        listModel.addElement("ID: " + aux.id);
+        listModel.addElement("Country: "+aux.country);
+        listModel.addElement("City: "+aux.city );
+        listModel.addElement("Username: " + aux.userName);
+        listModel.addElement("Password: " + aux.password);
+        listClient.setModel(listModel);
+        }
+    // print List of friends
+     public void printList(){
+        String user = lblUser.getText();// da igual
+        Client aux = metClient.searchXUserName(user);// da igual
+        String listName = lblList.getText();//hay que arreglar que se meta en la sublista del usuario, imprimetodas
+        FriendList auxFrnd = metFriendList.searchFriendlist(listName);
+        listModel.clear();//Limpió el listModel
+        while(auxFrnd!=null){
+            listModel.addElement("+++++++++++List++++++++++++");
+            listModel.addElement("List name: "+auxFrnd.listDescription);
+            listModel.addElement("Description: "+auxFrnd.listDescription);           
+            auxFrnd = auxFrnd.next;
+        }
+        listClient.setModel(listModel); 
+     }
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bttnAddList;
+    private javax.swing.JButton bttnChange;
+    private javax.swing.JButton bttnDelete;
+    private javax.swing.JButton bttnOut;
+    private javax.swing.JButton bttnShow;
+    private javax.swing.JButton bttnShowList;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblList;
+    private javax.swing.JLabel lblUser;
+    private javax.swing.JList<String> listClient;
     // End of variables declaration//GEN-END:variables
 }
+
