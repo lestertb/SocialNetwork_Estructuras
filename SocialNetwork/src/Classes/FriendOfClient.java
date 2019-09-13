@@ -9,14 +9,17 @@ package Classes;
  * @author andrey
  */
 public class FriendOfClient {
-    public String friend;
-    public FriendOfClient sigFrienOfClient;
-    public Client sigClient;
+
+    public Client client; //recibes a client
+    public FriendOfClient next;
+    public FriendList sigClient;
+    public Client clientsig;
 
     public FriendOfClient() {
     }
 
-    public FriendOfClient(String friend) {
-        this.friend = friend;
+    public FriendOfClient(Client client) {
+        this.client = client;
     }
+
 }

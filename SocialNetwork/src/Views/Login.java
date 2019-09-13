@@ -32,6 +32,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         creatUserAdmin();
+        createUser();
     }
 
     //meethod to send username to others frames
@@ -230,6 +231,20 @@ public class Login extends javax.swing.JFrame {
         metClient.InsertOrdered(userName, password,
         country, city, id, name, lastName1,
         lastName2, urlImage);      
+    }
+    
+    public void createUser(){
+     String userName = "a";
+     String password ="a";
+     String country="a";
+     String city="a";
+     int id=1;
+     String name="a";
+     String lastName1="a";
+     String lastName2="a";
+     String urlImage="a";
+     
+     metClient.InsertOrdered(userName, password, country, city, id, name, lastName1, lastName2, urlImage);
     }
     
     //Validate the login

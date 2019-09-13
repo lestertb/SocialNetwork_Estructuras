@@ -15,7 +15,7 @@ public class FriendList {
     public String listName;
     public String listDescription;
     public FriendList next;
-    public FriendOfClient sigFriendOfClient;
+    
     
     
     

@@ -8,6 +8,7 @@ package Views;
 import Classes.*;
 import Methods.methodsClient;
 import Methods.methodsFriendList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -170,10 +171,14 @@ public class AddFriendList extends javax.swing.JFrame {
     }
         //create FriendList check user**
         public void createList(){
+        FriendList aux = metFriendList.head;
         String user = lblUser.getText();
+        if(txtListName.getText().isEmpty() | txtDescription.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Empty Field");
+        }else{
         metFriendList.insertFinal(user, txtListName.getText(), txtDescription.getText());
-        listName = txtListName.getText();
-        
+                listName = txtListName.getText();
+        }
         }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttnAdd;

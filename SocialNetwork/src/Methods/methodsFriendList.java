@@ -20,8 +20,7 @@ public class methodsFriendList {
     public boolean insertFinal (String user,String listName, String listDescription){
         FriendList newList = new FriendList (listName, listDescription);
         if (head==null){
-            head = newList;
-            last = newList;
+            last = head = newList;
             return true;
         }
         FriendList aux = head;
