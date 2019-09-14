@@ -27,7 +27,7 @@ public class Client {
     public String lastName2;
     public String urlImage;
     public Client next, prev;
-    public FriendOfClient nextFriend;
+    public FriendList sigFriendList;
     
     //Create the instance to get the user  
     public static Client instance = null;

@@ -20,7 +20,7 @@ public class AddFriendToAFriendList extends javax.swing.JFrame {
     
     methodsClient metClient = methodsClient.getInstance();
     methodsFriendList metFriendList = methodsFriendList.getInstance();
-    methodsFriendOfClient metFriendOfClient = methodsFriendOfClient.getInstance();
+   
     
     public AddFriendToAFriendList() {
         initComponents();
@@ -131,7 +131,7 @@ public class AddFriendToAFriendList extends javax.swing.JFrame {
     }//GEN-LAST:event_btbExitActionPerformed
 
     private void btnAddFriendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddFriendActionPerformed
-       AddFriendToAlist();
+       //AddFriendToAlist();
     }//GEN-LAST:event_btnAddFriendActionPerformed
 
     /**
@@ -179,22 +179,7 @@ public class AddFriendToAFriendList extends javax.swing.JFrame {
     private javax.swing.JTextField txtFriendName;
     private javax.swing.JTextField txtListName;
     // End of variables declaration//GEN-END:variables
-public void AddFriendToAlist(){
-String listName = txtListName.getText();
-String userName = txtFriendName.getText();
-Client aux = metClient.searchXUserName(userName);
-int call = metFriendOfClient.insertFinal(userName, listName, aux);
-        if (call==0){
-            JOptionPane.showMessageDialog(null, "There's not user");
-            
-        }
-        if (call==1){
-            JOptionPane.showMessageDialog(null, "There's not friend list");
-            
-        }
-        JOptionPane.showMessageDialog(null, "Friend added to"+" "+ listName);
 
-}
 
 
 
