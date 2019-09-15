@@ -23,26 +23,26 @@ public class methodsAddFriend {
         return instance;
     } 
     
-    public int insertarInicio(String userName,String friendName, String listName, String description){
+    public int insertarInicio(String userName,String friendUserName, String listName, String description){
         methodsClient metUser = methodsClient.getInstance();
-        Client auxUsuarioEnvio = metUser.searchXUserName(userName);
-        if (auxUsuarioEnvio == null) {
-            return 0; //no existe Usuario Remitente
+        Client userListOwner = metUser.searchXUserName(userName);
+        if (userListOwner == null) {
+            return 0; //Doesn't exist UserOwner
         }
-        methodsClient metFriend = methodsClient.getInstance();
-        Client auxUsuarioDesti = metFriend.searchXUserName(friendName);
-        if (auxUsuarioDesti ==null) { //no existe Usuario Destinatario
-            return 1;
+        Client userToAdd = metUser.searchXUserName(friendUserName);
+        if (userToAdd ==null) { 
+            return 1; //Doesn't exist UserFriend
         }
         FriendList newList = new FriendList(listName,description);
-        newList.nextUsuario  = auxUsuarioEnvio;
-        //auxUsuarioDesti.sigUsarioEnvio sería el inicio de cada subLista
-        if (auxUsuarioDesti.sigFriendList == null) { //si no exite nodo, lo crea
-            auxUsuarioDesti.sigFriendList = newList;
+        
+        if (userListOwner.sigFriendList == null) { 
+            userListOwner.sigFriendList = newList;
+            newList.nextUsuario = userToAdd;
             return 2; 
         }
-        newList.next = auxUsuarioDesti.sigFriendList; //en caso de que ya exista nodo, lo asigna al inicio
-        auxUsuarioDesti.sigFriendList = newList;  
-        return 2; //asignado
+        newList.next = userListOwner.sigFriendList;
+        newList.nextUsuario = userToAdd; 
+        userListOwner.sigFriendList = newList;
+        return 2;
     }
 }

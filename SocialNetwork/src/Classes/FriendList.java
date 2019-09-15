@@ -26,7 +26,6 @@ public class FriendList {
     public FriendList(String listName, String listDescription) {
         this.listName = listName;
         this.listDescription = listDescription;
-        next = null;
     }
     
 }
