@@ -377,12 +377,12 @@ public class UserFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Insertado");
         }
         
-        int insertardo4 = metAddFriend.insertarInicio(userName,"b",listName, "Hola" );
+        int insertardo4 = metAddFriend.insertFinal(userName,"b",listName, "Hola" );
         if (insertardo4 == 2) {
             JOptionPane.showMessageDialog(null, "OK");
         }
         
-        int insertardo5 = metAddFriend.insertarInicio(userName,"c",listName, "Hola");
+        int insertardo5 = metAddFriend.insertFinal(userName,"c",listName, "Hola");
         if (insertardo5 == 2) {
             JOptionPane.showMessageDialog(null, "OK");
         }
@@ -399,14 +399,14 @@ public class UserFrame extends javax.swing.JFrame {
         String friendUserName = jTextField4.getText();
         String listName = jTextField1.getText();
         String description = jTextField2.getText();
-        int result = metAddFriend.insertarInicio(userName, friendUserName, listName, description);
+        int result = metAddFriend.insertFinal(userName, friendUserName, listName, description);
         if (result == 2) {
             JOptionPane.showMessageDialog(null, "OK");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        imprimir1();        
+        imprimir1(); 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
@@ -524,29 +524,28 @@ public class UserFrame extends javax.swing.JFrame {
     }
    
 public void imprimir1(){
+     int cont = 1;
      methodsAddFriend newFriend = new methodsAddFriend();
      Client auxUsuario = metClient.head;
      listModel.clear();
      if (auxUsuario != null) {
          while (auxUsuario != metClient.last) {
             FriendList auxFriend = auxUsuario.sigFriendList;
-             while (auxFriend!=null) {                 
-                 listModel.addElement("--------" + auxFriend.listName + "-------");
-                 listModel.addElement("Owner: "+ auxUsuario.userName);
-                 listModel.addElement("MemberName: "+ auxFriend.nextUsuario.userName);
-                 listModel.addElement("-----------------------------------------");
-                 auxFriend = auxFriend.next;
+             while (auxFriend != null) {
+                 if (cont == 1) {
+                    listModel.addElement("--------" + auxFriend.listName + "-------");
+                    listModel.addElement("Owner: "+ auxUsuario.userName);
+                    listModel.addElement("MemberName"+ cont +": "+ auxFriend.nextUsuario.userName);
+                    cont ++;
+                 }
+                 else if (cont > 1) {
+                     listModel.addElement("MemberName"+ cont +": "+ auxFriend.nextUsuario.userName);
+                     cont ++;
+                 } 
+                  auxFriend = auxFriend.next;
              }
                 auxUsuario = auxUsuario.next;
             }
-         FriendList auxFriend = metClient.last.sigFriendList;
-            while (auxFriend != null) {             
-                 listModel.addElement("--------" + auxFriend.listName + "-------");
-                 listModel.addElement("Owner: "+ metClient.last.userName);
-                 listModel.addElement("MemberName: "+ auxFriend.nextUsuario.userName);
-                 listModel.addElement("-----------------------------------------");
-                 auxFriend = auxFriend.next;
-         }
             jList1.setModel(listModel);
         }
     }

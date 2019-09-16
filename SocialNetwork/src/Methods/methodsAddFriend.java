@@ -13,7 +13,7 @@ import Classes.*;
  * @author marco
  */
 public class methodsAddFriend {
-    FriendList inicio, ultimo; 
+    FriendList head, last; 
     
     public static methodsAddFriend instance = null;
     public static methodsAddFriend getInstance(){
@@ -23,7 +23,7 @@ public class methodsAddFriend {
         return instance;
     } 
     
-    public int insertarInicio(String userName,String friendUserName, String listName, String description){
+    public int insertFinal(String userName,String friendUserName, String listName, String description){
         methodsClient metUser = methodsClient.getInstance();
         Client userListOwner = metUser.searchXUserName(userName);
         if (userListOwner == null) {
@@ -34,15 +34,22 @@ public class methodsAddFriend {
             return 1; //Doesn't exist UserFriend
         }
         FriendList newList = new FriendList(listName,description);
-        
+        newList.nextUsuario = userListOwner;
         if (userListOwner.sigFriendList == null) { 
             userListOwner.sigFriendList = newList;
             newList.nextUsuario = userToAdd;
             return 2; 
         }
-        newList.next = userListOwner.sigFriendList;
-        newList.nextUsuario = userToAdd; 
-        userListOwner.sigFriendList = newList;
-        return 2;
+        FriendList aux = userListOwner.sigFriendList;
+        while (aux != null) {            
+            if (aux.next == null) {
+                aux.next = newList.next;
+                newList.nextUsuario = userToAdd; 
+                aux.next = newList;
+                return 2;
+            }
+            aux = aux.next;
+        }
+        return 3;
     }
 }
