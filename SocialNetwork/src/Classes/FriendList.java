@@ -14,10 +14,16 @@ package Classes;
 public class FriendList {
     public String listName;
     public String listDescription;
-    public FriendList next;
-    public Client nextUsuario;
+    public FriendList next,ant;
+    public FriendsToAdd nextFriend;
     
-    
+    public static FriendList instance = null;
+    public static FriendList getInstance(){
+        if(instance == null){
+            instance = new FriendList();
+        }
+        return instance;
+    }
     
     
     public FriendList() {
@@ -25,6 +31,23 @@ public class FriendList {
     //Constructor with params to generate the new Friendlist
     public FriendList(String listName, String listDescription) {
         this.listName = listName;
+        this.listDescription = listDescription;
+        this.next = this.ant = null;
+    }
+
+    public String getListName() {
+        return listName;
+    }
+
+    public void setListName(String listName) {
+        this.listName = listName;
+    }
+
+    public String getListDescription() {
+        return listDescription;
+    }
+
+    public void setListDescription(String listDescription) {
         this.listDescription = listDescription;
     }
     

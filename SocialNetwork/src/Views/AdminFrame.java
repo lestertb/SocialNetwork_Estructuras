@@ -22,6 +22,7 @@ public class AdminFrame extends javax.swing.JFrame {
     
     // Declarations the globals variables to call the methods
     methodsClient metClient = methodsClient.getInstance();
+    methodsReports metReports = methodsReports.getInstance();
     
     
     public AdminFrame() {
@@ -53,6 +54,9 @@ public class AdminFrame extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         txtID = new javax.swing.JTextField();
         btnID = new javax.swing.JButton();
+        btnSearchPendingReports = new javax.swing.JButton();
+        btnSearchDoneReports = new javax.swing.JButton();
+        btnSearchRejectedReports = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -165,7 +169,7 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCity)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -198,41 +202,66 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnSearchPendingReports.setText("Search Pending Reports");
+        btnSearchPendingReports.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchPendingReportsActionPerformed(evt);
+            }
+        });
+
+        btnSearchDoneReports.setText("Search Done Reports ");
+        btnSearchDoneReports.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchDoneReportsActionPerformed(evt);
+            }
+        });
+
+        btnSearchRejectedReports.setText("Search Rejected Reports");
+        btnSearchRejectedReports.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchRejectedReportsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnSearchDoneReports, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                        .addComponent(btnSearchPendingReports, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(121, 121, 121)
+                        .addComponent(jButton2)
+                        .addContainerGap(175, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 37, Short.MAX_VALUE))
+                        .addGap(23, 125, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addGap(70, 70, 70))))
+                        .addGap(111, 111, 111)
+                        .addComponent(btnSearchRejectedReports))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jButton1)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -241,8 +270,20 @@ public class AdminFrame extends javax.swing.JFrame {
                         .addGap(52, 52, 52)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(8, 8, 8))
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSearchDoneReports)
+                    .addComponent(btnSearchPendingReports)
+                    .addComponent(jButton2))
+                .addGap(18, 18, 18)
+                .addComponent(btnSearchRejectedReports)
+                .addGap(27, 27, 27)
+                .addComponent(jButton1)
+                .addGap(205, 205, 205))
         );
 
         pack();
@@ -282,6 +323,19 @@ public class AdminFrame extends javax.swing.JFrame {
         Client aux = metClient.searchXID(id);
         PrintXID(aux);
     }//GEN-LAST:event_btnIDActionPerformed
+
+    private void btnSearchPendingReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchPendingReportsActionPerformed
+        Reports aux = metReports.head;
+        PrintXPending(aux);
+    }//GEN-LAST:event_btnSearchPendingReportsActionPerformed
+
+    private void btnSearchDoneReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchDoneReportsActionPerformed
+        
+    }//GEN-LAST:event_btnSearchDoneReportsActionPerformed
+
+    private void btnSearchRejectedReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchRejectedReportsActionPerformed
+        
+    }//GEN-LAST:event_btnSearchRejectedReportsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -323,6 +377,9 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnCity;
     private javax.swing.JButton btnCountry;
     private javax.swing.JButton btnID;
+    private javax.swing.JButton btnSearchDoneReports;
+    private javax.swing.JButton btnSearchPendingReports;
+    private javax.swing.JButton btnSearchRejectedReports;
     private javax.swing.JButton btnUserName;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -381,4 +438,16 @@ public class AdminFrame extends javax.swing.JFrame {
         listModel.addElement("ID: " + aux.id);        
         jList1.setModel(listModel);
         }
+    public void PrintXPending(Reports aux){
+        
+    
+    }
+    public void PrintXDone(Reports aux){
+        
+    
+    }
+    public void PrintRejected(Reports aux){
+        
+    
+    }
 }

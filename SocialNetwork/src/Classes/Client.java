@@ -28,6 +28,7 @@ public class Client {
     public String urlImage;
     public Client next, prev;
     public FriendList sigFriendList;
+    public  Reports sigReports;
     
     //Create the instance to get the user  
     public static Client instance = null;
@@ -56,6 +57,78 @@ public class Client {
         this.lastName2 = lastName2;
         this.urlImage = urlImage;
         this.next = this.prev = null;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName1() {
+        return lastName1;
+    }
+
+    public void setLastName1(String lastName1) {
+        this.lastName1 = lastName1;
+    }
+
+    public String getLastName2() {
+        return lastName2;
+    }
+
+    public void setLastName2(String lastName2) {
+        this.lastName2 = lastName2;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 
 
