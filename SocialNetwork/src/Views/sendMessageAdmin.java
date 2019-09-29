@@ -141,7 +141,6 @@ public class sendMessageAdmin extends javax.swing.JFrame {
 
     private void bttnSendMssgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnSendMssgActionPerformed
         createMessage();
-        sendMessageToClients();
     }//GEN-LAST:event_bttnSendMssgActionPerformed
 
     private void bttnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnBackActionPerformed
@@ -196,26 +195,25 @@ public class sendMessageAdmin extends javax.swing.JFrame {
         public void createMessage(){
         if(txtID.getText().isEmpty() | txtImage.getText().isEmpty()| txtMssg.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Empty Field");
-        
-        Message aux = metMessage.searchID(Integer.parseInt(txtID.getText()));
-        if(metMessage.searchID(Integer.parseInt(txtID.getText()))== aux){
-            JOptionPane.showMessageDialog(null, "ID repeated");
-          
+          }else{
+            boolean insert = metMessage.insertBegin(Integer.parseInt(txtID.getText()), txtMssg.getText(), txtImage.getText(),"Admin","Client");
+            if (insert) {
+                JOptionPane.showMessageDialog(null, "Message send");
+                 AdminFrame admin = new AdminFrame();
+                 admin.show();
+                 this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "ID already exist");
+                txtID.setText("");
+            }
+        }
         }
         
-        }else{
-        metMessage.insertBegin(Integer.parseInt(txtID.getText()), txtMssg.getText(), txtImage.getText(),"Admin","Client");
+        public void ClearTextF(){
+            txtID.setText("");
+            txtImage.setText("");
+            txtMssg.setText("");
         }
-        }
-        
-        //Method to send message to clients.
-        public void sendMessageToClients(){
-           JOptionPane.showMessageDialog(null, "Sended");
-           AdminFrame admin = new AdminFrame();
-           admin.show();
-           this.dispose();
-        }
-        
 
             
           

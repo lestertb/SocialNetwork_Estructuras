@@ -37,6 +37,7 @@ public class Message {
         this.urlImage = urlImage;
         this.sender = sender;
         this.addressee= addressee;
+        next = null;
     }    
 
     public int getMessageID() {

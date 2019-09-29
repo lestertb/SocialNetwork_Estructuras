@@ -258,9 +258,9 @@ public class AllMessages extends javax.swing.JFrame {
     Message aux = metMessage.head;
     while (aux !=null){
         metMessage.DeleteMessage(ID);
-        JOptionPane.showMessageDialog(null,"Deleted");
         aux=aux.next;
     }
+    JOptionPane.showMessageDialog(null,"Deleted");
     
 }
    

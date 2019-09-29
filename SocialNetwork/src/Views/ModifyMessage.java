@@ -170,10 +170,9 @@ methodsMessage metMessage = methodsMessage.getInstance();
         String text =txtNewMessage.getText();
         while(aux != null){
             metMessage.modifyMssg(text, ID);
-            JOptionPane.showMessageDialog(null, "Modified");
             aux = aux.next;
         }
-      JOptionPane.showMessageDialog(null, "Changed");
+      JOptionPane.showMessageDialog(null, "Modified");
       AllMessages all = new AllMessages();
       all.show();
       this.dispose();
