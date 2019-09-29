@@ -5,17 +5,26 @@
  */
 package Views;
 
+import Classes.Message;
+import Methods.methodsMessage;
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author andre
+ * @author andrey
  */
 public class SendMessageClient extends javax.swing.JFrame {
 
     /**
      * Creates new form SendMessageClient
      */
+    
+    methodsMessage metMessage = methodsMessage.getInstance();
     public SendMessageClient() {
         initComponents();
+            Login login = new Login();
+            lblUser.setText(login.userName1);
+           
     }
 
     /**
@@ -35,6 +44,9 @@ public class SendMessageClient extends javax.swing.JFrame {
         txtID = new javax.swing.JTextField();
         txtMessage = new javax.swing.JTextField();
         txtURL = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtAddressee = new javax.swing.JTextField();
+        lblUser = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,6 +54,11 @@ public class SendMessageClient extends javax.swing.JFrame {
         jLabel1.setText("Write Your Message");
 
         bttnSend.setText("Send");
+        bttnSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnSendActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Message ID:");
 
@@ -49,55 +66,75 @@ public class SendMessageClient extends javax.swing.JFrame {
 
         jLabel4.setText("URL Image:");
 
+        jLabel5.setText("To:");
+
+        lblUser.setText("user");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(149, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(116, 116, 116))
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bttnSend)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtMessage)
-                        .addComponent(txtURL, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bttnSend)
+                            .addComponent(txtMessage)
+                            .addComponent(txtURL, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAddressee)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addComponent(jLabel1)))
+                .addContainerGap(105, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblUser)
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
+                .addComponent(lblUser)
+                .addGap(4, 4, 4)
                 .addComponent(jLabel1)
-                .addGap(21, 21, 21)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addComponent(bttnSend)
+                    .addComponent(jLabel5)
+                    .addComponent(txtAddressee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addComponent(bttnSend))
+                    .addComponent(jLabel3))
                 .addGap(32, 32, 32))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bttnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnSendActionPerformed
+        
+        sendMessageToClients();
+    }//GEN-LAST:event_bttnSendActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,6 +170,30 @@ public class SendMessageClient extends javax.swing.JFrame {
             }
         });
     }
+    
+        public void createMessage(){
+             String user= lblUser.getText();
+        if(txtID.getText().isEmpty() |txtAddressee.getText().isEmpty()| txtURL.getText().isEmpty()| txtMessage.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Empty Field");
+        
+        Message aux = metMessage.searchID(Integer.parseInt(txtID.getText()));
+        if(metMessage.searchID(Integer.parseInt(txtID.getText()))== aux){
+            JOptionPane.showMessageDialog(null, "ID repeated");
+          
+        }
+        
+        }else{
+        metMessage.insertBegin(Integer.parseInt(txtID.getText()), txtMessage.getText(), txtURL.getText(),user,txtAddressee.getText());
+        }
+        }
+    
+            //Method to send message to clients.
+        public void sendMessageToClients(){
+           JOptionPane.showMessageDialog(null, "Sended");
+           AdminFrame admin = new AdminFrame();
+           admin.show();
+           this.dispose();
+        }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttnSend;
@@ -140,6 +201,9 @@ public class SendMessageClient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lblUser;
+    private javax.swing.JTextField txtAddressee;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtMessage;
     private javax.swing.JTextField txtURL;
