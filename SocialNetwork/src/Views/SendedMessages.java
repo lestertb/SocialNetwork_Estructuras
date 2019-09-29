@@ -13,17 +13,20 @@ import javax.swing.DefaultListModel;
  *
  * @author andrey
  */
-public class MessagesFromAdmin extends javax.swing.JFrame {
-    //use ListModel
-   DefaultListModel<String> listModel = new DefaultListModel<>(); 
-   
-   //use methodsMessage
-   methodsMessage metMessage = methodsMessage.getInstance();
-   
-    public MessagesFromAdmin() {
+public class SendedMessages extends javax.swing.JFrame {
+
+    /**
+     * Creates new form SendedMessages
+     */
+        methodsMessage metMessage = methodsMessage.getInstance();
+        DefaultListModel<String> listModel = new DefaultListModel<>(); 
+    public SendedMessages() {
         initComponents();
-        showMessage();
-              
+        
+        //method to get username
+         Login login = new Login();
+         lblUser.setText(login.userName1);
+         showMessage();
     }
 
     /**
@@ -35,14 +38,20 @@ public class MessagesFromAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        listMessage = new javax.swing.JList<>();
-        bttnExit = new javax.swing.JButton();
+        lblUser = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listSended = new javax.swing.JList<>();
+        bttnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jScrollPane1.setViewportView(listMessage);
+        lblUser.setText("user");
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setText("Sended Messages");
+
+        jScrollPane1.setViewportView(listSended);
 
         bttnExit.setText("Exit");
         bttnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -51,36 +60,37 @@ public class MessagesFromAdmin extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel1.setText("Admin Messages");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(80, 80, 80)
+                .addComponent(lblUser)
+                .addGap(15, 15, 15))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(bttnExit)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addGap(82, 82, 82)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 87, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(171, 171, 171)
+                .addComponent(bttnExit)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(lblUser))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addComponent(bttnExit)
-                .addGap(26, 26, 26))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -88,8 +98,8 @@ public class MessagesFromAdmin extends javax.swing.JFrame {
 
     private void bttnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnExitActionPerformed
         UserFrame user = new UserFrame();
-        user.show();
-        this.dispose();
+           user.show();
+           this.dispose();
     }//GEN-LAST:event_bttnExitActionPerformed
 
     /**
@@ -109,33 +119,34 @@ public class MessagesFromAdmin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MessagesFromAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SendedMessages.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MessagesFromAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SendedMessages.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MessagesFromAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SendedMessages.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MessagesFromAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SendedMessages.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MessagesFromAdmin().setVisible(true);
+                new SendedMessages().setVisible(true);
             }
         });
     }
-    //print the admin messages in a jlist
-    public void showMessage(){
+    
+          //print the sended messages in a jlist
+       public void showMessage(){
+    String user = lblUser.getText();
     Message aux = metMessage.head;
     while (aux != null) {
-        if(aux.addressee.equals("Client")){
+        if(aux.sender.equals(user)){
         listModel.addElement("----Message-----");
         listModel.addElement("Message ID:"+ aux.messageID);
          listModel.addElement(aux.messageText);
-        listMessage.setModel(listModel);
+        listSended.setModel(listModel);
         aux = aux.next;
         }
     }
@@ -145,6 +156,7 @@ public class MessagesFromAdmin extends javax.swing.JFrame {
     private javax.swing.JButton bttnExit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> listMessage;
+    private javax.swing.JLabel lblUser;
+    private javax.swing.JList<String> listSended;
     // End of variables declaration//GEN-END:variables
 }

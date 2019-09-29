@@ -27,6 +27,8 @@ public class SendMessageClient extends javax.swing.JFrame {
            
     }
 
+       //meethod to send username to others frames
+        public static String listName = "";
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -133,7 +135,7 @@ public class SendMessageClient extends javax.swing.JFrame {
 
     private void bttnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnSendActionPerformed
         
-        sendMessageToClients();
+        createMessage();
     }//GEN-LAST:event_bttnSendActionPerformed
 
     /**
@@ -170,7 +172,8 @@ public class SendMessageClient extends javax.swing.JFrame {
             }
         });
     }
-    
+    //-----------------------------------------------Methods----------------------------------------------------------------------------//
+        //create message whit the user logged as sender
         public void createMessage(){
              String user= lblUser.getText();
         if(txtID.getText().isEmpty() |txtAddressee.getText().isEmpty()| txtURL.getText().isEmpty()| txtMessage.getText().isEmpty()){
@@ -183,17 +186,18 @@ public class SendMessageClient extends javax.swing.JFrame {
         }
         
         }else{
+            listName = txtAddressee.getText();
         metMessage.insertBegin(Integer.parseInt(txtID.getText()), txtMessage.getText(), txtURL.getText(),user,txtAddressee.getText());
+                  JOptionPane.showMessageDialog(null, "Sended");
+           UserFrame userf = new UserFrame();
+           userf.show();
+           this.dispose();
         }
         }
     
-            //Method to send message to clients.
-        public void sendMessageToClients(){
-           JOptionPane.showMessageDialog(null, "Sended");
-           AdminFrame admin = new AdminFrame();
-           admin.show();
-           this.dispose();
-        }
+
+ 
+        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttnSend;

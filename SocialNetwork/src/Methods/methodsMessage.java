@@ -20,6 +20,7 @@ public class methodsMessage {
     
     public Message head; //indicate first nodo of list
     public Message aux= head;
+    public Message ant;
     
     
        //Insert message to a first nodo of the list
@@ -57,4 +58,35 @@ public class methodsMessage {
         return null;
     }
    
+    
+             //Delete by ID
+    public boolean DeleteMessage(int ID){
+        if (head == null) {
+            return false;
+        }
+        
+        
+        Message ant = head;
+      while(aux != null){
+           if(aux.messageID == ID){
+               ant.next = aux.next;
+                return true;
+           }
+           ant = aux;
+           aux = aux.next;
+    }
+      return false;    
+    }
+    
+       public boolean modifyMssg(String text, int ID){
+        while(aux != null){
+             if (aux.messageID == ID) {
+                aux.messageText = text;
+                return true;
+            }
+               aux = aux.next;
+        }
+        return false;
+   }
+       
     }
