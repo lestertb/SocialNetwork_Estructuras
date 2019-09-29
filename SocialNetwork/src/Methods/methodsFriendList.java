@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 public class methodsFriendList {
     public FriendList head, last;
     
-//Create the instance to get the FriendList
     public static methodsFriendList instance = null;
     public static methodsFriendList getInstance(){
         if(instance == null){
@@ -24,8 +23,8 @@ public class methodsFriendList {
         
         FriendList newList = new FriendList(instance.listName, instance.listDescription );
         if (head==null){
-            last = head = newList;
-            head.next=last;          
+            head = newList;
+            head.next=null;          
             return true;
         }
         FriendList aux = head;
@@ -35,10 +34,7 @@ public class methodsFriendList {
                 return false;
             }          
             if (aux.next==null){
-                aux.next = newList;
-                last=newList;
-                last.next = head;
-                
+                aux.next = newList;             
                 return true;   
             }
             aux = aux.next;
@@ -46,10 +42,10 @@ public class methodsFriendList {
         return false;
     }
     public FriendList searchSpecificFriendlist(Client user,String listName){
-        if(user.sigFriendList== null){
+        if(user.nextFriendList== null){
             return null;
         }
-        FriendList aux = user.sigFriendList;
+        FriendList aux = user.nextFriendList;
         while (aux != null){
             if (aux.listName.equals(listName)){
                 return aux;
@@ -60,10 +56,10 @@ public class methodsFriendList {
     }
     
      public FriendList searchAnyList(Client userName,String listName){
-        if(userName.sigFriendList ==null){
+        if(userName.nextFriendList ==null){
             return null;
         }
-        FriendList aux = userName.sigFriendList;
+        FriendList aux = userName.nextFriendList;
         while(aux!=null){
             if(aux.getListName().equals(listName)){
                 return aux;
