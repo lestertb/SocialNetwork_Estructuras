@@ -33,11 +33,11 @@ public class methodsAddFriend {
          }
         if(metFriendList.searchAnyList(user,listName)==null){// If the list doesn't exist, create it
             FriendList newList = new FriendList(listName, description);
-            if(user.sigFriendList==null){
-                user.sigFriendList = newList;
+            if(user.nextFriendList==null){
+                user.nextFriendList = newList;
                 return true;
             }
-            FriendList aux = user.sigFriendList;
+            FriendList aux = user.nextFriendList;
             while(aux !=null){
                 if(aux.next == null){ //Insert in the last position
                     aux.next = newList;
@@ -65,7 +65,7 @@ public class methodsAddFriend {
      
      public Client searchFriend(Client userName,String listName,String friend) {
         
-        FriendList list = userName.sigFriendList;
+        FriendList list = userName.nextFriendList;
         FriendsToAdd aux = list.nextFriend;
         while(aux!=null){
             if(aux.newFriend.userName.equals(friend)){
@@ -118,11 +118,11 @@ public class methodsAddFriend {
      
      public boolean deleteACompleteFriendList(Client user,String listName){//This method delete a friend list by it's list name
         
-        FriendList aux = user.sigFriendList;
+        FriendList aux = user.nextFriendList;
         
         while(aux!=null){
             if(aux.listName.equals(listName)){
-                user.sigFriendList = aux.next;
+                user.nextFriendList = aux.next;
                 return true;
             }
             if(aux.next.listName.equals(listName)){
@@ -166,7 +166,7 @@ public class methodsAddFriend {
      /* if(metFriendList.searchSpecificFriendlist(userName, listName)==null){
           return false;
       }*/
-      FriendList aux = userName.sigFriendList;
+      FriendList aux = userName.nextFriendList;
       while(aux!=null){
           if(aux.getListName().equals(listName)){
                     aux.setListName(newListName); 

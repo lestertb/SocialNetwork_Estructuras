@@ -67,12 +67,12 @@ public class methodsReports {
         Reports nuevo = new Reports(id_Report,title,clientObservation,adminObservation,state);
         nuevo.sigClient  = auxUsuarioEnvio;
         //auxUsuarioDesti.sigUsarioEnvio sería el inicio de cada subLista
-        if (auxUsuarioDesti.sigReports == null) { //si no exite nodo, lo crea
-            auxUsuarioDesti.sigReports = nuevo;
+        if (auxUsuarioDesti.nextReports == null) { //si no exite nodo, lo crea
+            auxUsuarioDesti.nextReports = nuevo;
             return 2; 
         }
-        nuevo.next = auxUsuarioDesti.sigReports; //en caso de que ya exista nodo, lo asigna al inicio
-        auxUsuarioDesti.sigReports = nuevo;  
+        nuevo.next = auxUsuarioDesti.nextReports; //en caso de que ya exista nodo, lo asigna al inicio
+        auxUsuarioDesti.nextReports = nuevo;  
         return 2; //asignado
     }
     public Reports searchReportbyState(String state){
@@ -99,10 +99,10 @@ public class methodsReports {
     }
      
      public Reports searchReportsbyState(String state, Client user){
-      if(user.sigReports== null){
+      if(user.nextReports== null){
             return null;
         }
-        Reports aux = user.sigReports;
+        Reports aux = user.nextReports;
         while (aux != null){
             if (aux.state.equals(state)){
                 return aux;
@@ -115,7 +115,7 @@ public class methodsReports {
      
      public Reports searchAllPendingReports(){
      Client user = metClient.head;
-     Reports report = user.sigReports;
+     Reports report = user.nextReports;
      if(report.state.equals("Pending")){
             return report;
      }
@@ -132,7 +132,7 @@ public class methodsReports {
      }
      public Reports searchAllDoneReports(){
      Client user = metClient.head;
-     Reports report = user.sigReports;
+     Reports report = user.nextReports;
      if(report.state.equals("Done")){
             return report;
      }
@@ -149,7 +149,7 @@ public class methodsReports {
      }
      public Reports searchAllRejectedReports(){
      Client user = metClient.head;
-     Reports report = user.sigReports;
+     Reports report = user.nextReports;
      if(report.state.equals("Rejected")){
             return report;
      }

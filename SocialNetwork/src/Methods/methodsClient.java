@@ -14,7 +14,7 @@ import javax.swing.*;
  * @author Lester Trejos
  */
 public class methodsClient {
-    // Creation of varibles to carry the firs nodo and the lastone
+    // Creation of varibles to carry the first nodo and the lastone
     public Client head, last;
  
     //Create the instance

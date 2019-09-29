@@ -17,6 +17,7 @@ public class Client {
 
     public Client(String userName1) {
     }
+    //atributes
     public String userName;
     public String password;
     public String country;
@@ -26,9 +27,12 @@ public class Client {
     public String lastName1;
     public String lastName2;
     public String urlImage;
+    //pointers
     public Client next, prev;
-    public FriendList sigFriendList;
-    public  Reports sigReports;
+    //links
+    public FriendList nextFriendList;
+    public  Reports nextReports;
+    public Message nextMessage;
     
     //Create the instance to get the user  
     public static Client instance = null;
@@ -56,7 +60,6 @@ public class Client {
         this.lastName1 = lastName1;
         this.lastName2 = lastName2;
         this.urlImage = urlImage;
-        this.next = this.prev = null;
     }
 
     public String getUserName() {
