@@ -12,4 +12,5 @@ package Classes;
 public class FriendsToAdd {
     public Client newFriend;
     public FriendsToAdd sig;
+    public FriendsToAdd ant;
 }

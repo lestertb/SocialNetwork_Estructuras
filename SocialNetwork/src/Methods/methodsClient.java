@@ -106,47 +106,66 @@ public class methodsClient {
     // Method to search by User Name
     public Client searchXUserName(String userName){
         Client aux = head;
-        while (aux != null){
-            if (aux.userName.equals(userName)){
-                return aux;
-            }
+        if (userName.equals(head.userName)) {
+            return aux;
+        }else{
             aux = aux.next;
+            while (aux != head){
+                if (aux.userName.equals(userName)){
+                    return aux;
+                }
+            aux = aux.next;
+            }
+            return null;
         }
-        return null;
-           
     }
     // Method to search by ID
     public Client searchXID(int id){  
-         Client aux = head;
-        while (aux != null){
-            if (aux.id == id){
-                return aux;
-            }
+        Client aux = head;
+        if (id == head.id) {
+            return aux;
+        }else{
             aux = aux.next;
+            while (aux != head){
+                if (aux.id == id){
+                    return aux;
+                }
+            aux = aux.next;
+            }
+            return null;
         }
-        return null;
     }
    
     public Client searchXCountry(String country){
-        Client aux = head;
-        while (aux != null){
-            if (aux.country.equals(country)){
-                return aux;
-            }
+       Client aux = head;
+        if (country.equals(head.country)) {
+            return aux;
+        }else{
             aux = aux.next;
+            while (aux != head){
+                if (aux.country.equals(country)){
+                    return aux;
+                }
+            aux = aux.next;
+            }
+            return null;
         }
-        return null;
     }
     
-    public Client searchXCity(String City){
+    public Client searchXCity(String city){
         Client aux = head;
-        while (aux != null){
-            if (aux.city.equals(City)){
-                return aux;
-            }
+        if (city.equals(head.city)) {
+            return aux;
+        }else{
             aux = aux.next;
+            while (aux != head){
+                if (aux.city.equals(city)){
+                    return aux;
+                }
+            aux = aux.next;
+            }
+            return null;
         }
-        return null;
     }
     
     
@@ -158,10 +177,10 @@ public class methodsClient {
        }
        
        if (aux == head){
-          if(head.sig == null){
+          if(head.next == null){
           head = last = null;
           }else{
-          head = head.sig;
+          head = head.next;
           head.prev = null;
           }
           return true;

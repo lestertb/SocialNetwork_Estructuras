@@ -349,15 +349,10 @@ public class CreateList extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(jLabel9)
-                        .addGap(208, 208, 208)
-                        .addComponent(jLabel11))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(114, 114, 114)
+                .addComponent(jLabel9)
+                .addGap(208, 208, 208)
+                .addComponent(jLabel11)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(91, 91, 91)
@@ -368,6 +363,8 @@ public class CreateList extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(86, 86, 86)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -412,11 +409,14 @@ public class CreateList extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addComponent(jLabel13)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addComponent(jButton1)
-                .addGap(33, 33, 33))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(jButton1)))
+                .addGap(118, 118, 118))
         );
 
         pack();
@@ -443,18 +443,29 @@ public class CreateList extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnCreate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreate1ActionPerformed
-        Client user = metClient.searchXUserName(lblUser.getText());
-        String listName = txtListName1.getText();
-        String Friend = txtFriendName.getText();
-        boolean inserted = metAddFriend.addFriendToSpecificList(user, listName, Friend);
-        if(inserted ==true){
-            JOptionPane.showMessageDialog(null, "Friend Inserted");
-        }else{
-        JOptionPane.showMessageDialog(null, "Friend already Inserted or it had happened an error");
-        }
+        if (txtListName1.getText().isEmpty() || txtFriendName.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Empty Field");
+            }else{
+            Client user = metClient.searchXUserName(lblUser.getText());
+            String listName = txtListName1.getText();
+            String Friend = txtFriendName.getText();
+            Client result = metClient.searchXUserName(Friend);
+             if (result != null) {
+                    try {
+                        boolean inserted = metAddFriend.addFriendToSpecificList(user, listName, Friend);
+                        if(inserted == true){
+                            JOptionPane.showMessageDialog(null, "Friend Inserted");
+                        } 
+                        txtListName1.setText("");
+                        txtFriendName.setText(""); 
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "List or user doesn't exist");
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "User Not found");
+                } 
+       }
         
-        txtListName1.setText("");
-        txtFriendName.setText("");
     }//GEN-LAST:event_btnCreate1ActionPerformed
 
     private void btnDeleteFriendListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteFriendListActionPerformed

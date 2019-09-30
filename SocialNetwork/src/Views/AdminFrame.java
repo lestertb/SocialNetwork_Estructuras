@@ -61,7 +61,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Back");
+        jButton1.setText("Log Out");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -305,6 +305,7 @@ public class AdminFrame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -314,37 +315,68 @@ public class AdminFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
         Client aux = metClient.head;
-        PrintAllUsers(aux);
+         if (aux == null) {
+            JOptionPane.showMessageDialog(null, "User not found");
+        }else{ 
+           PrintAllUsers(aux);
+         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserNameActionPerformed
         String userName = txtUserName.getText();
         Client aux = metClient.searchXUserName(userName);
-        PrintXUserName(aux);
+        if (aux == null) {
+            JOptionPane.showMessageDialog(null, "User not found");
+        }else{ 
+            PrintXUserName(aux);
+        }
     }//GEN-LAST:event_btnUserNameActionPerformed
 
     private void btnCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCountryActionPerformed
         String country = txtCountry.getText();
-        Client aux = metClient.searchXUserName(country);
-        PrintXCountry(aux);
+        Client aux = metClient.searchXCountry(country);
+          if (aux == null) {
+            JOptionPane.showMessageDialog(null, "User not found");
+        }else{ 
+           PrintXCountry(aux);
+         }
+        
     }//GEN-LAST:event_btnCountryActionPerformed
 
     private void btnCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCityActionPerformed
        String city = txtCity.getText();
        Client aux = metClient.searchXCity(city);
-       PrintXCity(aux);
+         if (aux == null) {
+            JOptionPane.showMessageDialog(null, "User not found");
+        }else{ 
+           PrintXCity(aux);
+         }
     }//GEN-LAST:event_btnCityActionPerformed
 
     private void btnIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIDActionPerformed
-        int id = Integer.parseInt(txtID.getText());
-        Client aux = metClient.searchXID(id);
-        PrintXID(aux);
+        try {
+           int id = Integer.parseInt(txtID.getText());
+           Client aux = metClient.searchXID(id);
+            if (aux == null) {
+                JOptionPane.showMessageDialog(null, "User not found");
+            }else{ 
+               PrintXID(aux);
+             }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "The id is only integer");
+        }
     }//GEN-LAST:event_btnIDActionPerformed
 
     private void btnSearchPendingReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchPendingReportsActionPerformed
         Reports aux = metReports.head;
-        PrintXPending(aux);
+         if (aux == null) {
+            JOptionPane.showMessageDialog(null, "User not found");
+        }else{ 
+            PrintXPending(aux);
+         }
+       
     }//GEN-LAST:event_btnSearchPendingReportsActionPerformed
 
     private void btnSearchDoneReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchDoneReportsActionPerformed

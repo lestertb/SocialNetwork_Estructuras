@@ -254,13 +254,18 @@ public class AllMessages extends javax.swing.JFrame {
     }
 }
    public void deleteMssg(){
-    int ID = Integer.parseInt(txtID.getText());
-    Message aux = metMessage.head;
-    while (aux !=null){
-        metMessage.DeleteMessage(ID);
-        aux=aux.next;
-    }
-    JOptionPane.showMessageDialog(null,"Deleted");
+       try {
+           int ID = Integer.parseInt(txtID.getText());
+            Message aux = metMessage.head;
+            while (aux !=null){
+                metMessage.DeleteMessage(ID);
+                aux=aux.next;
+            }
+            JOptionPane.showMessageDialog(null,"Deleted");
+
+       } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "The id is only integer");
+       }
     
 }
    

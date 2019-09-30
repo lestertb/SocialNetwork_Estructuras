@@ -50,16 +50,28 @@ public class methodsAddFriend {
      }
      
      public Client searchFriendInAListName(Client userName,String listName,String friend) {
-        
+        System.out.println("1");
         FriendList list = metFriendList.searchSpecificFriendlist(userName,listName);
+        System.out.println("2");
         FriendsToAdd aux = list.nextFriend;
-        while(aux!=null){
-            if(aux.newFriend.userName.equals(friend)){
-                return aux.newFriend;
-                
-            }
+        System.out.println("3");
+         if (friend.equals(aux.newFriend.userName)) {
+             System.out.println("4");
+             return aux.newFriend;
+         }else{
+             System.out.println("5");
+             aux = aux.sig;
+             while(aux != list.nextFriend){
+                 System.out.println("while");
+                if(aux.newFriend.userName.equals(friend)){
+                    System.out.println("if");
+                    return aux.newFriend;
+                }
             aux = aux.sig;
         }
+            
+        }
+          System.out.println("nice");
         return null;
     }
      
@@ -76,43 +88,37 @@ public class methodsAddFriend {
         }
         return null;
     }
-    
+     
+     FriendsToAdd latest;//Final of list
      public boolean addFriendToSpecificList(Client userName,String listName,String friend){
-        
-        if(searchFriendInAListName(userName, listName, friend)!=null){//Search if the friend exists in the list required
-            JOptionPane.showMessageDialog(null, "Friend doesn't exist");
-            return false;
-        }
-        
         FriendList list = metFriendList.searchSpecificFriendlist(userName, listName); 
         Client userFriend = metClient.searchXUserName(friend);
         if(list!=null){
             if(userFriend!=null){
-                FriendsToAdd auxFriends = list.nextFriend;
+                FriendsToAdd auxFriends = list.nextFriend;//inicio
+
                 FriendsToAdd newAddFriend = new FriendsToAdd();
-                newAddFriend.newFriend =userFriend;
-                if(auxFriends==null){
-                    
-                    
-                    list.nextFriend = newAddFriend;
+                newAddFriend.newFriend = userFriend;//nuevo
+
+                if(auxFriends == null){ 
+                    list.nextFriend = latest = newAddFriend;
+                    latest.sig = list.nextFriend;
+                    list.nextFriend.sig = latest;
                     return true;
                 }
-                
                 while(auxFriends !=null){
-                    if(auxFriends.sig==null){
-                        auxFriends.sig = newAddFriend;
+                    if(auxFriends == list.nextFriend){
+                        latest.sig = newAddFriend;
+                        newAddFriend.ant = latest;
+                        latest = newAddFriend;
+                        latest.sig = newAddFriend;
                         return true;
                     }
                     auxFriends =auxFriends.sig;
-                }
-                
-                        
-            }
-                
-                
-        }
-        
-        return false;
+                }    
+            }     
+        } 
+      return false;
     }
      
      

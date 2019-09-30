@@ -392,7 +392,6 @@ public class UserFrame extends javax.swing.JFrame {
     private void btnSeeAllFriendListsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeeAllFriendListsActionPerformed
         Client user = metClient.searchXUserName(lblUser.getText());
         printListAll(user);
-        
     }//GEN-LAST:event_btnSeeAllFriendListsActionPerformed
 
     private void btnCommonFriendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCommonFriendsActionPerformed
@@ -545,7 +544,12 @@ public class UserFrame extends javax.swing.JFrame {
         while(auxFrnd!=null){
             listModel.addElement("+++++++++++List++++++++++++");
             listModel.addElement("List name: "+auxFrnd.listName);
-            listModel.addElement("Description: "+auxFrnd.listDescription);           
+            listModel.addElement("Description: "+auxFrnd.listDescription);
+            Client aux = auxFrnd.nextFriend.newFriend;
+            //while (aux != null) {                
+               // listModel.addElement("Friends: "+aux.userName);
+              //  aux = aux.next;
+            //}
             auxFrnd = auxFrnd.next;
         }
         listClient.setModel(listModel); 
