@@ -42,7 +42,7 @@ public class methodsFriendList {
         return false;
     }
     public FriendList searchSpecificFriendlist(Client user,String listName){
-        if(user.nextFriendList== null){
+        if(user.nextFriendList == null){
             return null;
         }
         FriendList aux = user.nextFriendList;

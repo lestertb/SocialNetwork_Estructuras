@@ -75,6 +75,7 @@ public class UserFrame extends javax.swing.JFrame {
         bttnSended = new javax.swing.JButton();
         bttnAll = new javax.swing.JButton();
         bttnDeleteMssg = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -221,6 +222,13 @@ public class UserFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Search Users");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -233,13 +241,10 @@ public class UserFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bttnDelete))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(213, 213, 213)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnCommonFriends, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(122, 122, 122)
+                        .addComponent(jButton2)
+                        .addGap(41, 41, 41)
+                        .addComponent(btnCommonFriends, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,48 +289,59 @@ public class UserFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblList)
                         .addGap(13, 13, 13))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(106, 106, 106)
+                .addComponent(jButton1)
+                .addGap(107, 107, 107))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(bttnAdminMessages)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(bttnAdminMessages)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(bttnShow)
-                                            .addComponent(bttnChange)))))
-                            .addComponent(lblList))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                    .addComponent(bttnShow)
+                                                    .addComponent(bttnChange)))))
+                                    .addComponent(lblList)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblUser)
+                                    .addComponent(jLabel1))
+                                .addGap(51, 51, 51)
+                                .addComponent(bttnMessages)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bttnSendMessage)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bttnAll)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bttnSended)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bttnDeleteMssg)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
-                            .addComponent(btnCommonFriends))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblUser)
-                            .addComponent(jLabel1))
-                        .addGap(51, 51, 51)
-                        .addComponent(bttnMessages)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bttnSendMessage)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bttnAll)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bttnSended)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bttnDeleteMssg)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(107, 107, 107)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(btnCommonFriends))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttnDelete)
                     .addComponent(bttnOut))
@@ -372,15 +388,18 @@ public class UserFrame extends javax.swing.JFrame {
        String listName = txtListName.getText();
        Client user = metClient.searchXUserName(lblUser.getText());
        FriendList aux = metFriendList.searchSpecificFriendlist(user,listName);
-       listModel.clear();
-        while (aux!=null) {            
-            listModel.addElement("+++++++++++List++++++++++++");
-            listModel.addElement("List name: "+aux.listName);
-            listModel.addElement("Description: "+aux.listDescription);           
-            aux = aux.next;
-        }
-        listClient.setModel(listModel);
-        txtListName.setText("");
+       if(aux != null){
+        listModel.clear();
+         while (aux!=null) {            
+             listModel.addElement("+++++++++++List++++++++++++");
+             listModel.addElement("List name: "+aux.listName);
+             listModel.addElement("Description: "+aux.listDescription);           
+             aux = aux.next;
+         }
+         listClient.setModel(listModel);
+         txtListName.setText("");
+       }else
+           JOptionPane.showMessageDialog(null, "List not found");
     }//GEN-LAST:event_btnSearchFriendListActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -457,6 +476,12 @@ public class UserFrame extends javax.swing.JFrame {
     private void bttnDeleteMssgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnDeleteMssgActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bttnDeleteMssgActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       SearchUsers searchUsers = new SearchUsers();
+       searchUsers.setVisible(true);
+       dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -538,21 +563,26 @@ public class UserFrame extends javax.swing.JFrame {
      }
      
      public void printListAll(Client userName){
-        Client user = userName;// da igual
-        FriendList auxFrnd = user.nextFriendList;
-        listModel.clear();//Limpió el listModel
-        while(auxFrnd!=null){
-            listModel.addElement("+++++++++++List++++++++++++");
-            listModel.addElement("List name: "+auxFrnd.listName);
-            listModel.addElement("Description: "+auxFrnd.listDescription);
-            Client aux = auxFrnd.nextFriend.newFriend;
-            //while (aux != null) {                
-               // listModel.addElement("Friends: "+aux.userName);
-              //  aux = aux.next;
-            //}
-            auxFrnd = auxFrnd.next;
-        }
-        listClient.setModel(listModel); 
+         try {
+            Client user = userName;// da igual
+            FriendList auxFrnd = user.nextFriendList;
+            listModel.clear();//Limpió el listModel
+            while(auxFrnd!=null){
+                listModel.addElement("+++++++++++List++++++++++++");
+                listModel.addElement("List name: "+auxFrnd.listName);
+                listModel.addElement("Description: "+auxFrnd.listDescription);
+                //Client aux = auxFrnd.nextFriend.newFriend;
+                //while (aux != null) {                
+                   // listModel.addElement("Friends: "+aux.userName);
+                  //  aux = aux.next;
+                //}
+                auxFrnd = auxFrnd.next;
+            }
+            listClient.setModel(listModel); 
+         } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, "Try again");
+         }
+            
      }
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -569,6 +599,7 @@ public class UserFrame extends javax.swing.JFrame {
     private javax.swing.JButton bttnSendMessage;
     private javax.swing.JButton bttnSended;
     private javax.swing.JButton bttnShow;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

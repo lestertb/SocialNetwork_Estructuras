@@ -429,6 +429,9 @@ public class CreateList extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        if (txtListName.getText().isEmpty() || txtDescription.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Empty Field");
+        }else{
         Client user = metClient.searchXUserName(lblUser.getText());
         String listName = txtListName.getText();
         String description = txtDescription.getText();
@@ -440,6 +443,7 @@ public class CreateList extends javax.swing.JFrame {
         }
         txtListName.setText("");
         txtDescription.setText("");
+        }
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnCreate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreate1ActionPerformed

@@ -49,31 +49,39 @@ public class methodsAddFriend {
         return false;
      }
      
-     public Client searchFriendInAListName(Client userName,String listName,String friend) {
+     public FriendList searchFriendInAListName(Client userName,String listName,String friend) {
         System.out.println("1");
-        FriendList list = metFriendList.searchSpecificFriendlist(userName,listName);
-        System.out.println("2");
-        FriendsToAdd aux = list.nextFriend;
-        System.out.println("3");
-         if (friend.equals(aux.newFriend.userName)) {
-             System.out.println("4");
-             return aux.newFriend;
-         }else{
-             System.out.println("5");
-             aux = aux.sig;
-             while(aux != list.nextFriend){
-                 System.out.println("while");
-                if(aux.newFriend.userName.equals(friend)){
-                    System.out.println("if");
-                    return aux.newFriend;
+        FriendList list = metFriendList.searchSpecificFriendlist(userName, listName); 
+        Client userFriend = metClient.searchXUserName(friend);
+        if(list!=null){
+            System.out.println("2");
+            if(userFriend!=null){
+                System.out.println("3");
+                FriendsToAdd auxFriends = list.nextFriend;//inicio
+                FriendsToAdd newAddFriend = new FriendsToAdd();
+                newAddFriend.newFriend = userFriend;//nuevo
+                if (newAddFriend.newFriend.userName.equals(list.nextFriend.newFriend.userName)) {
+                    System.out.println("4");
+                    return list;
+                }/*else{
+                    auxFriends = auxFriends.sig;
+                    FriendList aux = list;
+                    while (auxFriends != list.nextFriend) {
+                        if (auxFriends.newFriend.equals(newAddFriend.newFriend)) {
+                           return aux;}
+                        else{
+                            aux = aux.next;
+                        }
+                      auxFriends = auxFriends.sig;
+                    }
+                    return null;
+                   }*/
                 }
-            aux = aux.sig;
-        }
-            
-        }
-          System.out.println("nice");
-        return null;
-    }
+                 return null;                           
+            } 
+            return null;
+      } 
+    
      
      public Client searchFriend(Client userName,String listName,String friend) {
         
@@ -91,6 +99,10 @@ public class methodsAddFriend {
      
      FriendsToAdd latest;//Final of list
      public boolean addFriendToSpecificList(Client userName,String listName,String friend){
+        if(searchFriendInAListName(userName, listName, friend)!=null){//Search if the friend exists in the list required
+            JOptionPane.showMessageDialog(null, "The friend to enter is already on the list");
+            return false;
+        }
         FriendList list = metFriendList.searchSpecificFriendlist(userName, listName); 
         Client userFriend = metClient.searchXUserName(friend);
         if(list!=null){
