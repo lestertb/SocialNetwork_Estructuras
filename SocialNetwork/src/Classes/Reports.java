@@ -12,11 +12,12 @@ package Classes;
 public class Reports {
   public int id_Report;
   public String title;
-  public   String clientObservation;
-  public String  adminObservation;
-  public  String state;
-  public   Reports next, prev;
-  public Client sigClient;
+  public String clientObservation;
+  public String adminObservation;
+  public String state;
+  public Reports next, prev;
+  public String reportUsername;
+  public String clientUsername;
   public static Reports instance = null;
     public static Reports getInstance(){
         if(instance == null){
@@ -28,12 +29,15 @@ public class Reports {
     public Reports() {
     }
     
-    public Reports(int id_Report, String title, String clientObservation, String adminObservation, String state) {
+    public Reports(int id_Report, String title, String clientObservation, String adminObservation, String state, 
+            String reportUsername, String clientUsername) {
         this.id_Report = id_Report;
         this.title = title;
         this.clientObservation = clientObservation;
         this.adminObservation = adminObservation;
         this.state = state;
+        this.reportUsername = reportUsername;
+        this.clientUsername = clientUsername;
         this.next = this.prev = null;
     }
 

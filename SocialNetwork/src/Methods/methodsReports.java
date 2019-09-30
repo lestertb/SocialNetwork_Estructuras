@@ -6,6 +6,7 @@
 package Methods;
 
 import Classes.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,57 +25,154 @@ public class methodsReports {
         }
         return instance;
     } 
-   
-    /*public boolean insertReport(int id_Report, String title, String clientObservation, String adminObservation, String state ){
+     public boolean createReport(int idReport, String title, String obsClient, String obsAdmin, String status, String reportUsername, String clientUsername) {
         Reports instance = Reports.getInstance();
-        instance.adminObservation=adminObservation;
-        instance.clientObservation = clientObservation;
-        instance.state = state;
-        instance.id_Report= id_Report;
+        instance.adminObservation=obsAdmin;
+        instance.clientObservation = obsClient;
+        instance.state = status;
+        instance.id_Report= idReport;
         instance.title= title;
-        
-        Reports newReport = new Reports(id_Report,title, clientObservation,adminObservation,state);
-        
-        if (head == null){
-            head = newReport;
-            head.next = head;
-            return true;
-        }
-        if (head.next == head){
-            head.next = newReport;
-            newReport.next = head;
-            return true;
-        }
-        if(searchReportbyID(id_Report)==null){
-        newReport.next = head;
-        
-        }
-      
+        Reports report = new Reports(idReport, title, obsClient, obsAdmin, status, reportUsername, clientUsername);
 
-      return false;
-  }*/
-    public int insertarInicio(String userName,String friend, int id_Report, String title, String clientObservation, String adminObservation, String state){
-        
-        Client auxUsuarioEnvio = metClient.searchXUserName(userName);
-        if (auxUsuarioEnvio == null) {
-            return 0; //no existe Usuario Remitente
+        if (head == null) {
+            head = report;
+            report.next = report;
+            last = head;
+
+            return true;
+
+        } 
+        if(head.id_Report == idReport){
+            return false;
         }
-        
-        Client auxUsuarioDesti = metClient.searchXUserName(friend);
-        if (auxUsuarioDesti ==null) { //no existe Usuario Destinatario
-            return 1;
+            Reports aux = head;
+             while(aux != null){
+                 
+            if(aux.id_Report == idReport){
+               return false;
+              }
+            if(aux.next == null){ //or only aux
+            report.next = head;
+            head = report;
+            last.next = head;
+           
+            return true;
+            }
+             aux = aux.next;
+            }
+            
+             return false;
         }
-        Reports nuevo = new Reports(id_Report,title,clientObservation,adminObservation,state);
-        nuevo.sigClient  = auxUsuarioEnvio;
-        //auxUsuarioDesti.sigUsarioEnvio sería el inicio de cada subLista
-        if (auxUsuarioDesti.nextReports == null) { //si no exite nodo, lo crea
-            auxUsuarioDesti.nextReports = nuevo;
-            return 2; 
+
+    
+      public void printReports() {
+        if (head == null) {
+            JOptionPane.showMessageDialog(null, "No existen reportes");
+        } else {
+            Reports aux = head;
+
+            do {
+                System.out.println(aux.id_Report + "  Usuario reportado: " + aux.reportUsername + "Estado:" + aux.state);
+
+                aux = aux.next;
+            } while (aux != head);
+
         }
-        nuevo.next = auxUsuarioDesti.nextReports; //en caso de que ya exista nodo, lo asigna al inicio
-        auxUsuarioDesti.nextReports = nuevo;  
-        return 2; //asignado
     }
+      
+      public Reports searchByFilter(String filter) {
+       Reports aux = head;
+            while (aux != null){
+                if (aux.state.equals(filter)){
+                    return aux;
+                }
+            aux = aux.next;
+            }
+            return null;
+        
+    }
+      public boolean changeState(int idReport, String statusReport) {
+        if (head == null) {
+            return false;
+        } 
+            Reports aux = head;
+            while (aux != null){
+          
+                if (aux.id_Report == idReport) {
+                    aux.state=statusReport;
+                }
+
+                aux = aux.next;
+            }
+        return false;
+    }
+      
+         public boolean banUser(int idReport, String adminObs) {
+        if (head == null) {
+            return false;
+        } 
+            Reports aux = head;
+
+           while (aux  != null)  {
+                if (aux.id_Report == idReport && aux.state.equals("Pending")) {
+                    aux.state= ("Done");
+                    aux.clientObservation= adminObs;
+                    return true;
+                } else if (aux.id_Report == idReport && !aux.state.equals("Pendiente")) {
+
+                    return false;
+                }
+
+                aux  = aux .next;
+            } 
+        
+            return false;
+    }
+         
+     public String myReports(String username, String filter) {
+      
+        String text = "";
+        if (head == null) {
+            JOptionPane.showMessageDialog(null, "No existe lista de reportes");
+        } else {
+            Reports aux = head;
+
+            do {
+                if (aux.clientUsername.equals(username) && aux.state.equals(filter)) {
+                    text += "Title: " + aux.getTitle() + "\nClient observation: " + aux.clientObservation
+                            + "\nAdmin observation: " + aux.getAdminObservation()
+                            + "\nStatus: " + aux.getState() + "\nUser Reported: " + aux.reportUsername + "\n\n";
+                }
+                aux = aux.next;
+            } while (aux != head);
+        }
+        return text;
+    }
+     public String informReport(String username, String filter) {
+    
+            String text = "";
+
+        if (head == null) {
+            JOptionPane.showMessageDialog(null, "No existe lista de reportes");
+        } else {
+
+            Reports aux = head;
+
+            do {
+                if (aux.reportUsername.equals(username) && aux.state.equals(filter)) {
+                    text += "Title: " + aux.getTitle() + "\nClient observation: " + aux.clientObservation
+                            + "\nAdmin observation: " + aux.adminObservation
+                            + "\nStatus: " + aux.getState() + "\nUser Reported: " + aux.reportUsername + "\n\n";
+                }
+                aux = aux.next;
+            } while (aux != head);
+
+        }
+        return text;
+    
+    }
+     
+     
     public Reports searchReportbyState(String state){
         Reports aux = head;
         while (aux != null){

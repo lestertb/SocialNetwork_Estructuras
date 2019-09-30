@@ -76,6 +76,7 @@ public class UserFrame extends javax.swing.JFrame {
         bttnAll = new javax.swing.JButton();
         bttnDeleteMssg = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        btnReportsSection = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -229,6 +230,13 @@ public class UserFrame extends javax.swing.JFrame {
             }
         });
 
+        btnReportsSection.setText("Reports Section");
+        btnReportsSection.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportsSectionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -293,7 +301,9 @@ public class UserFrame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(106, 106, 106)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnReportsSection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(107, 107, 107))
         );
         layout.setVerticalGroup(
@@ -337,7 +347,9 @@ public class UserFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1)
-                        .addGap(107, 107, 107)))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnReportsSection)
+                        .addGap(57, 57, 57)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(btnCommonFriends))
@@ -483,6 +495,12 @@ public class UserFrame extends javax.swing.JFrame {
        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnReportsSectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportsSectionActionPerformed
+        ReportWindow fr = new ReportWindow();
+        fr.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnReportsSectionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -587,6 +605,7 @@ public class UserFrame extends javax.swing.JFrame {
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCommonFriends;
+    private javax.swing.JButton btnReportsSection;
     private javax.swing.JButton btnSearchFriendList;
     private javax.swing.JButton btnSeeAllFriendLists;
     private javax.swing.JButton bttnAdminMessages;
