@@ -22,11 +22,15 @@ methodsMessage metMessage = methodsMessage.getInstance();
      */
     public ModifyMessage() {
         initComponents();
-                //method to get ID
+        try {//method to get ID
          lblID.setText(String.valueOf(AllMessages.ID));
          int ID = Integer.parseInt(lblID.getText());
          Message aux = metMessage.searchID(ID);
-        
+ 
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, "The id is only integer");
+        }
+                
          
          
         

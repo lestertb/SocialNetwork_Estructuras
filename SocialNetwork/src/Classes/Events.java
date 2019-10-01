@@ -12,21 +12,39 @@ import java.util.Date;
  * @author marco
  */
 public class Events {
- public int  id_event;
- public String eventName;
- public String eventDescription;
- public  String city;
- public Date eventDate;
- public String state;
+    public int  id_event;
+    public String eventName;
+    public String eventDescription;
+    public String city;
+    public Date eventDate;
+    public String state; // Pending, Cancelled or Realized
+    public Events sig = null;
+    public Events next, prev;
+    public String owner;
+  
+  //Create the instance
+    public static Events instance = null;
+    public static Events getInstance(){
+        if(instance == null){
+            instance = new Events();
+        }
+        return instance;
+    }
 
-    public Events(int id_event, String eventName, String eventDescription, String city, Date eventDate, String state) {
+    public Events() {
+    }
+
+    public Events(int id_event, String eventName, String eventDescription, String city, Date eventDate, String state, String owner) {
         this.id_event = id_event;
         this.eventName = eventName;
         this.eventDescription = eventDescription;
         this.city = city;
         this.eventDate = eventDate;
         this.state = state;
+        this.owner = owner;
     }
+    
+    
 
     public int getId_event() {
         return id_event;

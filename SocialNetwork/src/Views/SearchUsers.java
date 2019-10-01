@@ -20,6 +20,7 @@ public class SearchUsers extends javax.swing.JFrame {
     // Declarations the globals variables to call the methods
     methodsClient metClient = methodsClient.getInstance();
     methodsReports metReports = methodsReports.getInstance();
+    Login login = new Login();
     
     
     /**
@@ -43,9 +44,6 @@ public class SearchUsers extends javax.swing.JFrame {
         btnCity = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        jPanel4 = new javax.swing.JPanel();
-        txtID = new javax.swing.JTextField();
-        btnID = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txtUserName = new javax.swing.JTextField();
         btnUserName = new javax.swing.JButton();
@@ -53,6 +51,8 @@ public class SearchUsers extends javax.swing.JFrame {
         txtCountry = new javax.swing.JTextField();
         btnCountry = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,7 +72,7 @@ public class SearchUsers extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCity, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -89,36 +89,6 @@ public class SearchUsers extends javax.swing.JFrame {
         );
 
         jScrollPane1.setViewportView(jList1);
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        btnID.setText("Search By ID");
-        btnID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIDActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnID)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnID)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -186,29 +156,49 @@ public class SearchUsers extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("ShowInfoUser");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(417, Short.MAX_VALUE)
+                .addGap(14, 14, 14)
+                .addComponent(jButton1)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(111, 111, 111)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63))))
+                        .addGap(63, 63, 63))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addGap(66, 66, 66))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(245, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -217,19 +207,21 @@ public class SearchUsers extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(50, 50, 50)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGap(52, 52, 52)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addContainerGap(140, Short.MAX_VALUE)))
+                    .addContainerGap(311, Short.MAX_VALUE)))
         );
 
         pack();
@@ -237,35 +229,11 @@ public class SearchUsers extends javax.swing.JFrame {
 
     private void btnCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCityActionPerformed
         String city = txtCity.getText();
-        Client aux = metClient.searchXCity(city);
-        if (aux == null) {
-            JOptionPane.showMessageDialog(null, "User not found");
-        }else{
-            jComboBox1.removeAllItems();
-            jComboBox1.addItem(aux.userName);
-            if (jComboBox1.getSelectedItem() == aux.userName) {
-                Print(aux); 
-            }
-        }
+        searchXCity(city);
+          if (jComboBox1.getItemCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Users not found");
+        }          
     }//GEN-LAST:event_btnCityActionPerformed
-
-    private void btnIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIDActionPerformed
-        try {
-            int id = Integer.parseInt(txtID.getText());
-            Client aux = metClient.searchXID(id);
-            if (aux == null) {
-                JOptionPane.showMessageDialog(null, "User not found");
-            }else{
-                jComboBox1.removeAllItems();
-                jComboBox1.addItem(aux.userName);
-                if (jComboBox1.getSelectedItem() == aux.userName) {
-                    Print(aux); 
-                }
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "The id is only integer");
-        }
-    }//GEN-LAST:event_btnIDActionPerformed
 
     private void btnUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserNameActionPerformed
         String userName = txtUserName.getText();
@@ -284,18 +252,29 @@ public class SearchUsers extends javax.swing.JFrame {
 
     private void btnCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCountryActionPerformed
         String country = txtCountry.getText();
-        Client aux = metClient.searchXCountry(country);
-        if (aux == null) {
-            JOptionPane.showMessageDialog(null, "User not found");
-        }else{
-            jComboBox1.removeAllItems();
-            jComboBox1.addItem(aux.userName);
-            if (jComboBox1.getSelectedItem() == aux.userName) {
-                Print(aux); 
-            }
+        searchXCountry(country);
+          if (jComboBox1.getItemCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Users not found");
         }
-
     }//GEN-LAST:event_btnCountryActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+           UserFrame user = new UserFrame();
+           user.show();
+           this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+      String userName = (String) jComboBox1.getSelectedItem();
+      Client aux = metClient.searchXUserName(userName.substring(10));
+        if (aux == null) {
+            JOptionPane.showMessageDialog(null, "User not Found");
+        }
+        else{
+            Print(aux);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -335,18 +314,17 @@ public class SearchUsers extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCity;
     private javax.swing.JButton btnCountry;
-    private javax.swing.JButton btnID;
     private javax.swing.JButton btnUserName;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtCountry;
-    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
 
@@ -378,7 +356,38 @@ public class SearchUsers extends javax.swing.JFrame {
         listModel.addElement("lastName2: " + aux.lastName2);
         jList1.setModel(listModel);
         }
-  
+   public void searchXCountry(String country){
+       jComboBox1.removeAllItems();
+       Client aux = metClient.head;
+        if (country.equals(metClient.head.country)) {
+            if (aux.userName.equals(login.userName1)) {  
+            }else
+             jComboBox1.addItem("UserName: " + aux.userName);
+        }
+            aux = aux.next;
+            while (aux != metClient.head){
+                if (aux.country.equals(country)){
+                    jComboBox1.addItem("UserName: " + aux.userName);
+                }
+            aux = aux.next;
+            }
+    }
+    public void searchXCity(String city){
+      jComboBox1.removeAllItems();
+      Client aux = metClient.head;
+        if (city.equals(metClient.head.city)) {
+              if (aux.userName.equals(login.userName1)) {  
+            }else
+             jComboBox1.addItem("UserName: " + aux.userName);
+        }
+            aux = aux.next;
+            while (aux != metClient.head){
+                if (aux.city.equals(city)){
+                    jComboBox1.addItem("UserName: " + aux.userName);
+                }
+            aux = aux.next;
+            }
+    }
 
 
 }

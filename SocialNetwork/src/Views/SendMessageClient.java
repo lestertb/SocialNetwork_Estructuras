@@ -175,14 +175,14 @@ public class SendMessageClient extends javax.swing.JFrame {
     //-----------------------------------------------Methods----------------------------------------------------------------------------//
         //create message whit the user logged as sender
         public void createMessage(){
-             String user= lblUser.getText();
+            try {
+                 String user= lblUser.getText();
         if(txtID.getText().isEmpty() |txtAddressee.getText().isEmpty()| txtURL.getText().isEmpty()| txtMessage.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Empty Field");
         
         Message aux = metMessage.searchID(Integer.parseInt(txtID.getText()));
         if(metMessage.searchID(Integer.parseInt(txtID.getText()))== aux){
             JOptionPane.showMessageDialog(null, "ID repeated");
-          
         }
         
         }else{
@@ -193,6 +193,13 @@ public class SendMessageClient extends javax.swing.JFrame {
            userf.show();
            this.dispose();
         }
+                
+            } catch (Exception e) {
+                
+                JOptionPane.showMessageDialog(null, "The id is only integer");
+                
+            }
+            
         }
     
 

@@ -193,7 +193,8 @@ public class sendMessageAdmin extends javax.swing.JFrame {
     }
         //Method to create and add message to a list
         public void createMessage(){
-        if(txtID.getText().isEmpty() | txtImage.getText().isEmpty()| txtMssg.getText().isEmpty()){
+            try {
+                 if(txtID.getText().isEmpty() | txtImage.getText().isEmpty()| txtMssg.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Empty Field");
           }else{
             boolean insert = metMessage.insertBegin(Integer.parseInt(txtID.getText()), txtMssg.getText(), txtImage.getText(),"Admin","Client");
@@ -207,6 +208,10 @@ public class sendMessageAdmin extends javax.swing.JFrame {
                 txtID.setText("");
             }
         }
+            } catch (Exception e) {
+                 JOptionPane.showMessageDialog(null, "The id is only integer");
+            }
+       
         }
         
         public void ClearTextF(){

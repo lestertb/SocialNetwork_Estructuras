@@ -59,6 +59,7 @@ public class AdminFrame extends javax.swing.JFrame {
         btnSearchRejectedReports = new javax.swing.JButton();
         bttnMssgFrm = new javax.swing.JButton();
         btnReportsSection = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -239,6 +240,13 @@ public class AdminFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("Events");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -246,13 +254,7 @@ public class AdminFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bttnMssgFrm)
-                .addGap(32, 32, 32))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(132, 132, 132))
+                .addGap(32, 673, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,7 +276,18 @@ public class AdminFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnSearchPendingReports, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                             .addComponent(btnReportsSection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addComponent(bttnMssgFrm))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(69, 69, 69)
+                                .addComponent(jButton3)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(132, 132, 132))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,20 +310,16 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSearchDoneReports)
-                    .addComponent(btnSearchPendingReports))
+                    .addComponent(btnSearchPendingReports)
+                    .addComponent(bttnMssgFrm))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSearchRejectedReports)
-                    .addComponent(btnReportsSection))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jButton1)
-                        .addGap(25, 25, 25))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bttnMssgFrm)
-                        .addGap(47, 47, 47))))
+                    .addComponent(btnReportsSection)
+                    .addComponent(jButton3))
+                .addGap(92, 92, 92)
+                .addComponent(jButton1)
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -345,23 +354,18 @@ public class AdminFrame extends javax.swing.JFrame {
 
     private void btnCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCountryActionPerformed
         String country = txtCountry.getText();
-        Client aux = metClient.searchXCountry(country);
-          if (aux == null) {
-            JOptionPane.showMessageDialog(null, "User not found");
-        }else{ 
-           PrintXCountry(aux);
-         }
-        
+        searchXCountry(country);
+          if (listModel.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Users not found");
+        }
     }//GEN-LAST:event_btnCountryActionPerformed
 
     private void btnCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCityActionPerformed
        String city = txtCity.getText();
-       Client aux = metClient.searchXCity(city);
-         if (aux == null) {
-            JOptionPane.showMessageDialog(null, "User not found");
-        }else{ 
-           PrintXCity(aux);
-         }
+        searchXCity(city);
+          if (listModel.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Users not found");
+        }
     }//GEN-LAST:event_btnCityActionPerformed
 
     private void btnIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIDActionPerformed
@@ -407,6 +411,12 @@ public class AdminFrame extends javax.swing.JFrame {
         fr.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnReportsSectionActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       adminEvents adminEve = new adminEvents();
+       adminEve.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -456,6 +466,7 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JButton bttnMssgFrm;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -523,4 +534,40 @@ public class AdminFrame extends javax.swing.JFrame {
         
     
     }
+    
+     public void searchXCountry(String country){
+       listModel.clear();
+       Client aux = metClient.head;
+        if (country.equals(metClient.head.country)) {
+             listModel.addElement("UserName: " + aux.userName);
+             jList1.setModel(listModel);
+           
+        }
+            aux = aux.next;
+            while (aux != metClient.head){
+                if (aux.country.equals(country)){
+                    listModel.addElement("UserName: " + aux.userName);
+                   
+                }
+            aux = aux.next;
+            jList1.setModel(listModel);
+            }
+    }
+    public void searchXCity(String city){
+      listModel.clear();
+      Client aux = metClient.head;
+        if (city.equals(metClient.head.city)) {
+             listModel.addElement("UserName: " + aux.userName);
+             jList1.setModel(listModel);
+        }
+            aux = aux.next;
+            while (aux != metClient.head){
+                if (aux.city.equals(city)){
+                    listModel.addElement("UserName: " + aux.userName);
+                }
+            aux = aux.next;
+            jList1.setModel(listModel);
+            }
+    }
+    
 }
