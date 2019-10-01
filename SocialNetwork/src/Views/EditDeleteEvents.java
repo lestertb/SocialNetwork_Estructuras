@@ -9,6 +9,8 @@ import Classes.Events;
 import Methods.methodsClient;
 import Methods.methodsEvents;
 import Methods.methodsReports;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -48,8 +50,8 @@ public class EditDeleteEvents extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
         txtEventName = new javax.swing.JTextField();
+        txtNewEventName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtEventDescription = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -84,7 +86,7 @@ public class EditDeleteEvents extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
+                        .addGap(70, 70, 70)
                         .addComponent(jButton2)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
@@ -126,6 +128,11 @@ public class EditDeleteEvents extends javax.swing.JFrame {
         jLabel8.setText("New Event Date");
 
         jButton3.setText("Modify");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -145,11 +152,11 @@ public class EditDeleteEvents extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtEventName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel5)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtEventName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtNewEventName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addGap(69, 69, 69)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,11 +175,11 @@ public class EditDeleteEvents extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEventName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtEventName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNewEventName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -241,20 +248,70 @@ public class EditDeleteEvents extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       InfoEvents ie = new InfoEvents();
-       ie.setVisible(true);
-       dispose();
+        try {
+             InfoEvents ie = new InfoEvents();
+             ie.setVisible(true);
+             dispose();
+        } catch (Exception e) {
+            login.setVisible(true);
+            this.dispose();
+            JOptionPane.showMessageDialog(null, "Error returning to login");
+        }
+      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String eventName = jTextField1.getText();
-        boolean aux = metEvents.delete(eventName, login.userName1);
-        if (aux == true) {
-            JOptionPane.showMessageDialog(null, "Removed");
-        }else{
-            JOptionPane.showMessageDialog(null, "Not found");
+
+        try {
+            String eventName = jTextField1.getText();
+            boolean aux = metEvents.delete(eventName,login.userName1);
+            if (aux) {
+                JOptionPane.showMessageDialog(null, "Removed");
+            }else{
+                JOptionPane.showMessageDialog(null, "Not found");
+            }  
+        } catch (Exception e) {
+          JOptionPane.showMessageDialog(null, "Not Deleted");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+    String eventName = txtEventName.getText();
+    Events aux = metEvents.searchXEventName(eventName);
+    Date testDate = null; 
+            try {
+                String fecha = txtEventDate.getText();
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                String date = fecha;
+                try{
+                    testDate = df.parse(date);
+                } catch (Exception e){
+                    JOptionPane.showMessageDialog(null, "Invalid formar, Enter(dd/MM/yyyy)");
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Invalid Date , Enter(dd/MM/yyyy)");
+            }
+        if (aux != null) {
+            if (aux.owner.equals(login.userName1)) {
+                if (aux.state.equals("Realized")) {
+                    JOptionPane.showMessageDialog(null, "");
+                }
+                aux.eventName = txtNewEventName.getText();
+                aux.eventDescription = txtEventDescription.getText();
+                aux.city = txtEventCity.getText();
+                aux.eventDate = testDate;
+                JOptionPane.showMessageDialog(null, "Modify");
+            }else{
+            JOptionPane.showMessageDialog(null, "Not found");
+            }
+        }else{
+        JOptionPane.showMessageDialog(null, "Not found");
+        }
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -310,6 +367,7 @@ public class EditDeleteEvents extends javax.swing.JFrame {
     private javax.swing.JTextField txtEventDate;
     private javax.swing.JTextField txtEventDescription;
     private javax.swing.JTextField txtEventName;
-    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtNewEventName;
     // End of variables declaration//GEN-END:variables
+
 }

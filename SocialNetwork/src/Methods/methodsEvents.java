@@ -105,8 +105,10 @@ public class methodsEvents {
     
     // Method to search by Event name
     public Events searchXEventName(String eventName){
+        System.out.println("1");
         Events aux = head;
         if (eventName.equals(head.eventName)) {
+             System.out.println("2");
             return aux;
         }else{
             aux = aux.next;
@@ -122,7 +124,7 @@ public class methodsEvents {
     
     
     public boolean delete(String eventName, String owner){
-        Events aux = searchXEventName(eventName);
+       Events aux = searchXEventName(eventName);
        if (aux == null) {
            JOptionPane.showMessageDialog(null, "Doesn't exist");
            return false;          
@@ -135,30 +137,29 @@ public class methodsEvents {
            JOptionPane.showMessageDialog(null, "This event is Realized");
            return false;
        }
-        if (aux.owner.equals(owner)) {
+            System.out.println("1");
             if (aux == head){
+                System.out.println("2");
                 if(head.next == null){
+                    System.out.println("3");
                     head = last = null;
                 }else{
                 head = head.next;
                 head.prev = null;
                 }
+                System.out.println("3");
                 return true;
             }
-            if(aux == last){
-            last= last.prev;
+            else if(aux == last){
+            last = last.prev;
             last.next = null;
             return true;
-
             }
             aux.prev.next = aux.next;
             aux.next.prev = aux.prev;
             return true;
-        }else{
-            return false;
-        }
    }
-    
-    
 
+
+  
 }

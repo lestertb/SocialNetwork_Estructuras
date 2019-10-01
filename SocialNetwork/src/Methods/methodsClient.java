@@ -170,7 +170,7 @@ public class methodsClient {
     
     
        public boolean delete(String userName){
-        Client aux = searchXUserName(userName);
+       Client aux = searchXUserName(userName);
        if (aux == null) {
            JOptionPane.showMessageDialog(null, "Doesn't exist");
            return false;          
