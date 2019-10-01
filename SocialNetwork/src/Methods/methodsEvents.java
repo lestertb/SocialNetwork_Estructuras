@@ -121,7 +121,7 @@ public class methodsEvents {
     }
     
     
-    public boolean delete(String eventName){
+    public boolean delete(String eventName, String owner){
         Events aux = searchXEventName(eventName);
        if (aux == null) {
            JOptionPane.showMessageDialog(null, "Doesn't exist");
@@ -131,29 +131,32 @@ public class methodsEvents {
            JOptionPane.showMessageDialog(null, "This event is canceled");
            return false;
        }
-        if (true) {
-            
+       if (aux.state.equals("Realized")){
+           JOptionPane.showMessageDialog(null, "This event is Realized");
+           return false;
+       }
+        if (aux.owner.equals(owner)) {
+            if (aux == head){
+                if(head.next == null){
+                    head = last = null;
+                }else{
+                head = head.next;
+                head.prev = null;
+                }
+                return true;
+            }
+            if(aux == last){
+            last= last.prev;
+            last.next = null;
+            return true;
+
+            }
+            aux.prev.next = aux.next;
+            aux.next.prev = aux.prev;
+            return true;
+        }else{
+            return false;
         }
-       
-       if (aux == head){
-          if(head.next == null){
-          head = last = null;
-          }else{
-          head = head.next;
-          head.prev = null;
-          }
-          return true;
-       }
-       
-       if(aux == last){
-       last= last.prev;
-       last.next = null;
-       return true;
-       
-       }
-       aux.prev.next = aux.next;
-       aux.next.prev = aux.prev;
-       return true;
    }
     
     

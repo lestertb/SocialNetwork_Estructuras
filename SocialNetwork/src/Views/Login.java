@@ -6,6 +6,12 @@ import Methods.*;
 import Views.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /*
@@ -24,6 +30,7 @@ public class Login extends javax.swing.JFrame {
      * Creates new form mainFrame
      */
    methodsClient metClient = methodsClient.getInstance();
+   methodsEvents metEvent = methodsEvents.getInstance();
     
   
     
@@ -34,6 +41,10 @@ public class Login extends javax.swing.JFrame {
         creatUserAdmin();
         createUser();
         SetIcon();
+        Events aux1 = metEvent.head;
+        if (aux1 != null) {
+            eventRealized();
+        }
     }
 
     //meethod to send username to others frames
@@ -321,5 +332,64 @@ public class Login extends javax.swing.JFrame {
         ImageIcon imagen = new ImageIcon( "src/Images/login.png");
         Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(jLabel4.getWidth(),jLabel4.getHeight(),Image.SCALE_DEFAULT));
         jLabel4.setIcon(icono);
+    }
+    
+    public void ConsultAllEvents(Events aux){
+        
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date salida = null;
+	Date dateTest = new Date();
+        String test1 = df.format(dateTest);
+       try {
+           salida = df.parse(test1);
+       } catch (ParseException ex) {
+           JOptionPane.showMessageDialog(null, "Error in dates");
+       }
+        Date testDate = null; 
+                try{
+                    testDate = aux.eventDate;
+                } catch (Exception e){
+                    JOptionPane.showMessageDialog(null, "Invalid formar, Enter(dd/MM/yyyy)");
+                }
+          if (testDate.compareTo(salida) < 0) {
+              aux.state = "Realized";
+        }
+        aux=aux.next;
+
+        while(aux!=metEvent.head){
+             SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/yyyy");
+             Date salida2 = null;
+             Date dateTest2 = new Date();
+             String test12 = df2.format(dateTest2);
+            try {
+                salida2 = df2.parse(test12);
+            } catch (ParseException ex) {
+                JOptionPane.showMessageDialog(null, "Error in dates");
+            }
+
+             Date testDate2 = null; 
+                     try{
+                         testDate2 = aux.eventDate;
+                     } catch (Exception e){
+                         JOptionPane.showMessageDialog(null, "Invalid formar, Enter(dd/MM/yyyy)");
+                     }
+               if (testDate2.compareTo(salida2) < 0) {
+                   aux.state = "Realized";
+             }
+            
+            aux=aux.next;
+        }
+        
+
+        
+    }
+
+    public void eventRealized(){
+     Events aux = metEvent.head;
+         if (aux == null) {
+            JOptionPane.showMessageDialog(null, "No events");
+        }else{ 
+           ConsultAllEvents(aux);
+         }
     }
 }

@@ -336,7 +336,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         Client aux = metClient.head;
          if (aux == null) {
-            JOptionPane.showMessageDialog(null, "User not found");
+            JOptionPane.showMessageDialog(null, "Users not found");
         }else{ 
            PrintAllUsers(aux);
          }
