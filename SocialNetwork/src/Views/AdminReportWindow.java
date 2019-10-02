@@ -171,13 +171,13 @@ public class AdminReportWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        AdminFrame fr = new AdminFrame();
+        AdminFrame fr = new AdminFrame();//enter un admin frame
         fr.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanActionPerformed
-        if(txtIdReport.getText().isEmpty()){
+        if(txtIdReport.getText().isEmpty()){//ban action
         JOptionPane.showMessageDialog(null, "Empty file");
         }else{
         try{
@@ -191,7 +191,7 @@ public class AdminReportWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBanActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-    String filter = (String) (comboSearch.getSelectedItem());
+    String filter = (String) (comboSearch.getSelectedItem());//obtain the item from combo box, and print the report by it filter
      Reports response = metReports.searchByFilter(filter);
  
         
@@ -200,7 +200,7 @@ public class AdminReportWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnChangeStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeStatusActionPerformed
-        if(txtIdReport.getText().isEmpty()){
+        if(txtIdReport.getText().isEmpty()){//obtain the item from combo box, and change the report status
         JOptionPane.showMessageDialog(null, "Empty file");
         }else{
         try{

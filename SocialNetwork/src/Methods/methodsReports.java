@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 public class methodsReports {
    public Reports head, last; 
     methodsClient metClient = methodsClient.getInstance();
-     public int idReport =1; 
+     public int idReport =1; //this has the counter of the id report
     public static methodsReports instance = null;
     public static methodsReports getInstance(){
         if(instance == null){
@@ -41,7 +41,7 @@ public class methodsReports {
          last.next = head;
          return true;
      }
-     Reports aux = head;
+     Reports aux = head;//Circular method list
      while(aux != null){
         if(aux.id_Report == report.id_Report){
             return false;
@@ -56,14 +56,14 @@ public class methodsReports {
                 
         
 
-      public void printReports() {
+      public void printReports() {//this methods print the reports
         if (head == null) {
             JOptionPane.showMessageDialog(null, "There are not reports");
         } else {
             Reports aux = head;
 
             do {
-                System.out.println(aux.id_Report + "  Usuario reportado: " + aux.reportUsername + "Estado:" + aux.state);
+                System.out.println(aux.id_Report + "  User reported: " + aux.reportUsername + "Status:" + aux.state);
 
                 aux = aux.next;
             } while (aux != head);
@@ -71,7 +71,7 @@ public class methodsReports {
         }
     }
       
-      public Reports searchByFilter(String filter) {
+      public Reports searchByFilter(String filter) {//search by filter, it can be pendig, rejected and done
          Reports aux = head;
             while (aux != null){
                 if (aux.state.equals(filter)){
@@ -82,7 +82,7 @@ public class methodsReports {
             return null;
         
     }
-      public boolean changeState(int idReport, String statusReport) {
+      public boolean changeState(int idReport, String statusReport) {//this method search a report by its id and chanfe the status
          Reports aux = head;
         if (aux.id_Report == idReport) {
             aux.state = statusReport;
@@ -100,7 +100,7 @@ public class methodsReports {
         }
     }
       
-         public boolean banUser(int idReport, String adminObs) {
+         public boolean banUser(int idReport, String adminObs) {//this method is used by de admin to ban users
         if (head == null) {
             return false;
         } 
@@ -108,7 +108,7 @@ public class methodsReports {
 
            while (aux  != null)  {
                 if (aux.id_Report == idReport && aux.state.equals("Pending")) {
-                    aux.state= ("Done");
+                    aux.state= ("Done");//the status now convert to be done
                     aux.clientObservation= adminObs;
                     return true;
                 } else if (aux.id_Report == idReport && !aux.state.equals("Pending")) {
@@ -122,11 +122,11 @@ public class methodsReports {
             return false;
     }
          
-     public String myReports(String username, String filter) {
+     public String myReports(String username, String filter) {//this method print the user's reports
       
         String text = "";
         if (head == null) {
-            JOptionPane.showMessageDialog(null, "No existe lista de reportes");
+            JOptionPane.showMessageDialog(null, "There is not report list");
         } else {
             Reports aux = head;
 
@@ -141,12 +141,12 @@ public class methodsReports {
         }
         return text;
     }
-     public String informReport(String username, String filter) {
+     public String informReport(String username, String filter) {//This method allow us to see the info of the report
     
             String text = "";
 
         if (head == null) {
-            JOptionPane.showMessageDialog(null, "No existe lista de reportes");
+            JOptionPane.showMessageDialog(null, "There is not report list");
         } else {
 
             Reports aux = head;
@@ -166,7 +166,7 @@ public class methodsReports {
     }
      
      
-    public Reports searchReportbyState(String state){
+    public Reports searchReportbyState(String state){//search mehtod of report
         Reports aux = head;
         while (aux != null){
             if (aux.state.equals(state)){
@@ -177,7 +177,7 @@ public class methodsReports {
         return null;
            
     }
-     public Reports searchReportbyID(int id){
+     public Reports searchReportbyID(int id){//search mehtod of report
         Reports aux = head;
         if (id == head.id_Report) {
             return aux;
@@ -192,71 +192,4 @@ public class methodsReports {
             return null;
         }
     }
-     
-     public Reports searchReportsbyState(String state, Client user){
-      if(user.nextReports== null){
-            return null;
-        }
-        Reports aux = user.nextReports;
-        while (aux != null){
-            if (aux.state.equals(state)){
-                return aux;
-            }
-            aux = aux.next;
-        }
-        return null;
-     
-     }
-     
-     public Reports searchAllPendingReports(){
-     Client user = metClient.head;
-     Reports report = user.nextReports;
-     if(report.state.equals("Pending")){
-            return report;
-     }
-     user = user.next;
-        while(user!=metClient.head){
-            if(report.state.equals("Pending")){
-                return report;
-            }
-            
-          user= user.next;
-          report = report.next;
-     }
-        return null;
-     }
-     public Reports searchAllDoneReports(){
-     Client user = metClient.head;
-     Reports report = user.nextReports;
-     if(report.state.equals("Done")){
-            return report;
-     }
-     user = user.next;
-        while(user!=metClient.head){
-            if(report.state.equals("Done")){
-                return report;
-            }
-            
-          user= user.next;
-          report = report.next;
-     }
-        return null;
-     }
-     public Reports searchAllRejectedReports(){
-     Client user = metClient.head;
-     Reports report = user.nextReports;
-     if(report.state.equals("Rejected")){
-            return report;
-     }
-     user = user.next;
-        while(user!=metClient.head){
-            if(report.state.equals("Rejected")){
-                return report;
-            }
-            
-          user= user.next;
-          report = report.next;
-     }
-        return null;
-     }
 }

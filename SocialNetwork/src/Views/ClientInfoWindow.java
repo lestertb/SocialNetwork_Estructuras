@@ -122,13 +122,13 @@ public class ClientInfoWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        ReportWindow fr = new ReportWindow();
+        ReportWindow fr = new ReportWindow();//enter into report window
         fr.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        String username = lblUser.getText();
+        String username = lblUser.getText();//this is to see the info of the report, by the filter obtain from combo box
         String filter = (String) comboSearch.getSelectedItem();
 
         textArea.setText(metReports.informReport(username, filter));

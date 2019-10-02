@@ -127,13 +127,13 @@ methodsFriendList metFriendList = methodsFriendList.getInstance();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        ReportWindow fr = new ReportWindow();
+        ReportWindow fr = new ReportWindow();//enter into report window
                 fr.setVisible(true);
                 dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        String username = lblUser.getText();
+        String username = lblUser.getText();//see my reports that i have done
         String filter = (String) comboSearch.getSelectedItem();
         
         textArea.setText(metReports.myReports(username, filter));

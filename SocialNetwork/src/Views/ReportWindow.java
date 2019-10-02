@@ -169,19 +169,19 @@ public class ReportWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReportActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        UserFrame fr = new UserFrame();
+        UserFrame fr = new UserFrame();//go back to user frame
         fr.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnMyReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMyReportsActionPerformed
-        ClientReportsWindow fr = new ClientReportsWindow();
+        ClientReportsWindow fr = new ClientReportsWindow();// go to client report window frame
         fr.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnMyReportsActionPerformed
 
     private void btnComplaintsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComplaintsActionPerformed
-        ClientInfoWindow fr = new ClientInfoWindow();
+        ClientInfoWindow fr = new ClientInfoWindow();// go to client Info Window frame
         fr.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnComplaintsActionPerformed
@@ -236,7 +236,7 @@ public class ReportWindow extends javax.swing.JFrame {
     private javax.swing.JTextField txtTitle;
     // End of variables declaration//GEN-END:variables
 public void createReport(){
-            try {
+            try {//this method create a report
                  String userName= lblUser.getText();
         if(txtReportUserName.getText().isEmpty() |txtTitle.getText().isEmpty()| txtClientObservation.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Empty Field");
@@ -244,11 +244,11 @@ public void createReport(){
             String title = txtTitle.getText();
             String reportUser = txtReportUserName.getText();
             String clientObs = txtClientObservation.getText();
-            int id_Report = metReports.idReport;
+            int id_Report = metReports.idReport;//this is taken from methodsReports
         boolean reported = metReports.createReport(id_Report, title,clientObs,"","Pending", reportUser, userName);
         
         if(reported)
-            metReports.idReport++;
+            metReports.idReport++;//its increment beacuse the report cannot has the same id
                  JOptionPane.showMessageDialog(null, "User reported");
         }
                 
