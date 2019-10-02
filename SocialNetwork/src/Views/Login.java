@@ -37,14 +37,21 @@ public class Login extends javax.swing.JFrame {
 
 //Initialize methods with the Frame
     public Login() {
-        initComponents();
-        creatUserAdmin();
-        createUser();
-        SetIcon();
-        Events aux1 = metEvent.head;
-        if (aux1 != null) {
-            eventRealized();
+        try {
+            initComponents();
+            creatUserAdmin();
+            createUser();
+            SetIcon();
+            Events aux1 = metEvent.head;
+            if (aux1 != null) {
+                eventRealized();
+            }else{
+  
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error");
         }
+     
     }
 
     //meethod to send username to others frames
@@ -335,7 +342,9 @@ public class Login extends javax.swing.JFrame {
     }
     
     public void ConsultAllEvents(Events aux){
-        
+        if (aux == null) {
+            
+        }else{
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         Date salida = null;
 	Date dateTest = new Date();
@@ -371,7 +380,7 @@ public class Login extends javax.swing.JFrame {
                      try{
                          testDate2 = aux.eventDate;
                      } catch (Exception e){
-                         JOptionPane.showMessageDialog(null, "Invalid formar, Enter(dd/MM/yyyy)");
+                         
                      }
                if (testDate2.compareTo(salida2) < 0) {
                    aux.state = "Realized";
@@ -379,17 +388,19 @@ public class Login extends javax.swing.JFrame {
             
             aux=aux.next;
         }
-        
-
-        
+       }
     }
 
     public void eventRealized(){
-     Events aux = metEvent.head;
+        try {
+            Events aux = metEvent.head;
          if (aux == null) {
             JOptionPane.showMessageDialog(null, "No events");
         }else{ 
            ConsultAllEvents(aux);
          }
+        } catch (Exception e) {
+        }
+        
     }
 }

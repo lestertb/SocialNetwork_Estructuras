@@ -296,13 +296,14 @@ public class EditDeleteEvents extends javax.swing.JFrame {
         if (aux != null) {
             if (aux.owner.equals(login.userName1)) {
                 if (aux.state.equals("Realized")) {
-                    JOptionPane.showMessageDialog(null, "");
-                }
+                    JOptionPane.showMessageDialog(null, "Event is Realized");
+                }else{
                 aux.eventName = txtNewEventName.getText();
                 aux.eventDescription = txtEventDescription.getText();
                 aux.city = txtEventCity.getText();
                 aux.eventDate = testDate;
                 JOptionPane.showMessageDialog(null, "Modify");
+                }
             }else{
             JOptionPane.showMessageDialog(null, "Not found");
             }
