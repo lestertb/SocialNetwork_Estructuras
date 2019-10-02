@@ -5,7 +5,9 @@
  */
 package Views;
 
+import Classes.*;
 import Methods.*;
+import static Views.SendMessageClient.listName;
 
 import javax.swing.JOptionPane;
 
@@ -22,7 +24,6 @@ public class ReportWindow extends javax.swing.JFrame {
         methodsFriendList metFriendList = methodsFriendList.getInstance();
         methodsAddFriend metAddFriend = methodsAddFriend.getInstance();
         methodsReports metReports = methodsReports.getInstance();
-        int idReports = 1;
     public ReportWindow() {
         initComponents();
          Login login = new Login();
@@ -50,8 +51,6 @@ public class ReportWindow extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         btnMyReports = new javax.swing.JButton();
         btnComplaints = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        txtId_Report = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,9 +94,6 @@ public class ReportWindow extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel5.setText("ID Report");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,18 +117,16 @@ public class ReportWindow extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGap(57, 57, 57)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(txtClientObservation, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtId_Report, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnReport)
-                                .addGap(64, 64, 64)
+                                .addGap(61, 61, 61)
                                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
+                                .addGap(37, 37, 37)
                                 .addComponent(btnMyReports)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnComplaints)))))
@@ -157,51 +151,21 @@ public class ReportWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtClientObservation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtId_Report, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnReport)
                     .addComponent(btnBack)
                     .addComponent(btnMyReports)
                     .addComponent(btnComplaints))
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(173, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
-        if((txtReportUserName.getText().isEmpty())||txtClientObservation.getText().isEmpty()||(txtTitle.getText().isEmpty())){
-            JOptionPane.showMessageDialog(null, "Empty file");
-        }else{
-        String reportUsername = txtReportUserName.getText();
-        String clientUsername = lblUser.getText();
-        
-        if (metClient.searchXUserName(reportUsername) != null && metClient.searchXUserName(clientUsername) != null) {
-            int idReport = idReports;
-            String title = txtTitle.getText();
-            String obsClient = txtClientObservation.getText();
-            String obsAdmin = "";
-            String status = "Pendiente";
-            boolean reportStatus =  metReports.createReport(idReport, title, obsClient, obsAdmin, status, reportUsername, clientUsername);
-            
-            if (reportStatus){
-                idReports ++;
-                JOptionPane.showMessageDialog(rootPane, "Report done");
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "It has happened an error");
-            }
-            
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "Verify the users and try again");
-        }
-        
-        
-        }
-        
+    
+        createReport();
     }//GEN-LAST:event_btnReportActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -266,11 +230,35 @@ public class ReportWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lblUser;
     private javax.swing.JTextField txtClientObservation;
-    private javax.swing.JTextField txtId_Report;
     private javax.swing.JTextField txtReportUserName;
     private javax.swing.JTextField txtTitle;
     // End of variables declaration//GEN-END:variables
+public void createReport(){
+            try {
+                 String userName= lblUser.getText();
+        if(txtReportUserName.getText().isEmpty() |txtTitle.getText().isEmpty()| txtClientObservation.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Empty Field");
+        }else{
+            String title = txtTitle.getText();
+            String reportUser = txtReportUserName.getText();
+            String clientObs = txtClientObservation.getText();
+            int id_Report = metReports.idReport;
+        boolean reported = metReports.createReport(id_Report, title,clientObs,"","Pending", reportUser, userName);
+        
+        if(reported)
+            metReports.idReport++;
+                 JOptionPane.showMessageDialog(null, "User reported");
+        }
+                
+            } catch (Exception e) {
+                
+                JOptionPane.showMessageDialog(null, "The id is only integer");
+                
+            }
+            
+        }
+    
+
 }

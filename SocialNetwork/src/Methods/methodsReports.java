@@ -15,9 +15,7 @@ import javax.swing.JOptionPane;
 public class methodsReports {
    public Reports head, last; 
     methodsClient metClient = methodsClient.getInstance();
-     methodsFriendList metFriendList = methodsFriendList.getInstance();
-     methodsAddFriend metAddFriend = methodsAddFriend.getInstance();
-        
+     public int idReport =1; 
     public static methodsReports instance = null;
     public static methodsReports getInstance(){
         if(instance == null){
@@ -32,42 +30,35 @@ public class methodsReports {
         instance.state = status;
         instance.id_Report= idReport;
         instance.title= title;
-        Reports report = new Reports(idReport, title, obsClient, obsAdmin, status, reportUsername, clientUsername);
-
-        if (head == null) {
-            head = report;
-            report.next = report;
-            last = head;
-
-            return true;
-
-        } 
-        if(head.id_Report == idReport){
+        instance.clientUsername = clientUsername;
+        instance.reportUsername = reportUsername;
+        Reports report = new Reports(instance.id_Report,instance.title, instance.clientObservation,instance.adminObservation, instance.state,
+                instance.reportUsername, instance.clientUsername);
+        //Insert at the beginning
+       if (head == null) {
+         head =last = report;
+         head.next = last;
+         last.next = head;
+         return true;
+     }
+     Reports aux = head;
+     while(aux != null){
+        if(aux.id_Report == report.id_Report){
             return false;
         }
-            Reports aux = head;
-             while(aux != null){
-                 
-            if(aux.id_Report == idReport){
-               return false;
-              }
-            if(aux.next == null){ //or only aux
-            report.next = head;
-            head = report;
-            last.next = head;
-           
-            return true;
-            }
-             aux = aux.next;
-            }
-            
-             return false;
+        aux = aux.next;
         }
+        report.next = head;
+        head = report;
+        last.next = head;
+        return true;
+    }
+                
+        
 
-    
       public void printReports() {
         if (head == null) {
-            JOptionPane.showMessageDialog(null, "No existen reportes");
+            JOptionPane.showMessageDialog(null, "There are not reports");
         } else {
             Reports aux = head;
 
@@ -81,7 +72,7 @@ public class methodsReports {
     }
       
       public Reports searchByFilter(String filter) {
-       Reports aux = head;
+         Reports aux = head;
             while (aux != null){
                 if (aux.state.equals(filter)){
                     return aux;
@@ -92,19 +83,21 @@ public class methodsReports {
         
     }
       public boolean changeState(int idReport, String statusReport) {
-        if (head == null) {
-            return false;
-        } 
-            Reports aux = head;
-            while (aux != null){
-          
-                if (aux.id_Report == idReport) {
-                    aux.state=statusReport;
+         Reports aux = head;
+        if (aux.id_Report == idReport) {
+            aux.state = statusReport;
+            return true;
+        }else{
+            aux = aux.next;
+            while (aux != head){
+                if (aux.id_Report == idReport){
+                    aux.state = statusReport;
+                    return true;
                 }
-
-                aux = aux.next;
+            aux = aux.next;
             }
-        return false;
+            return false;
+        }
     }
       
          public boolean banUser(int idReport, String adminObs) {
@@ -118,7 +111,7 @@ public class methodsReports {
                     aux.state= ("Done");
                     aux.clientObservation= adminObs;
                     return true;
-                } else if (aux.id_Report == idReport && !aux.state.equals("Pendiente")) {
+                } else if (aux.id_Report == idReport && !aux.state.equals("Pending")) {
 
                     return false;
                 }
@@ -186,14 +179,18 @@ public class methodsReports {
     }
      public Reports searchReportbyID(int id){
         Reports aux = head;
-        while (aux != null){
-            if (aux.id_Report == id){
-                return aux;
-            }
+        if (id == head.id_Report) {
+            return aux;
+        }else{
             aux = aux.next;
+            while (aux != head){
+                if (aux.id_Report == id){
+                    return aux;
+                }
+            aux = aux.next;
+            }
+            return null;
         }
-        return null;
-           
     }
      
      public Reports searchReportsbyState(String state, Client user){
