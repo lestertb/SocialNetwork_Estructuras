@@ -4,11 +4,14 @@
  * and open the template in the editor.
  */
 package Classes;
+
+import java.io.Serializable;
+
     /**
  *
  * @author andrey
  */
-public class FriendOfClient {
+public class FriendOfClient implements Serializable{
     public String name;
     public String lastName1;
     public String  lastName2;

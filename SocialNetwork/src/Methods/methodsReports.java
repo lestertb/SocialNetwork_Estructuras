@@ -6,13 +6,14 @@
 package Methods;
 
 import Classes.*;
+import java.io.Serializable;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author marco
  */
-public class methodsReports {
+public class methodsReports implements Serializable{
    public Reports head, last; 
     methodsClient metClient = methodsClient.getInstance();
      public int idReport =1; //this has the counter of the id report

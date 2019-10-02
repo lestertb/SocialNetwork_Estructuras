@@ -6,6 +6,7 @@
 package Methods;
 
 import Classes.*;
+import java.io.Serializable;
 import javax.swing.JOptionPane;
 
 
@@ -13,7 +14,7 @@ import javax.swing.JOptionPane;
  *
  * @author marco
  */
-public class methodsAddFriend {
+public class methodsAddFriend implements Serializable{
     FriendList head, last; 
     methodsClient metClient = methodsClient.getInstance();
      methodsFriendList metFriendList = methodsFriendList.getInstance();
@@ -27,19 +28,21 @@ public class methodsAddFriend {
     } 
     
      public boolean createList(Client user,String listName,String description){
-         
-         if(metClient.searchXUserName(user.userName)==null){//Checking if the user exists
+         //Checking if the user exists
+         if(metClient.searchXUserName(user.userName)==null){
               return false;
          }
-        if(metFriendList.searchAnyList(user,listName)==null){// If the list doesn't exist, create it
+         //exist?, create it
+        if(metFriendList.searchAnyList(user,listName)==null){
             FriendList newList = new FriendList(listName, description);
             if(user.nextFriendList==null){
                 user.nextFriendList = newList;
                 return true;
             }
             FriendList aux = user.nextFriendList;
+            //Insert in the last
             while(aux !=null){
-                if(aux.next == null){ //Insert in the last position
+                if(aux.next == null){
                     aux.next = newList;
                     return true;
                 }

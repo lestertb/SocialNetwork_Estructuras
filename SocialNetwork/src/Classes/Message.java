@@ -5,11 +5,13 @@
  */
 package Classes;
 
+import java.io.Serializable;
+
 /**
  *
  * @author andrey
  */
-public class Message {
+public class Message implements Serializable{
     //atributes
     public int messageID;
     public String messageText;

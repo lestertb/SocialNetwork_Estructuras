@@ -5,13 +5,15 @@
  */
 package Classes;
 
+import java.io.Serializable;
+
 /**
  *
  * @author andrey
  */
 
 //Class to create FriendList
-public class FriendList {
+public class FriendList implements Serializable{
     public String listName;
     public String listDescription;
     public FriendList next,ant;

@@ -7,6 +7,7 @@ package Methods;
 
 import Classes.Client;
 import Classes.Events;
+import java.io.Serializable;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -14,7 +15,7 @@ import javax.swing.JOptionPane;
  *
  * @author Lester Trejos
  */
-public class methodsEvents {
+public class methodsEvents implements Serializable{
     
     // Creation of varibles to carry the first nodo and the lastone
     public Events head, last;

@@ -5,11 +5,13 @@
  */
 package Classes;
 
+import java.io.Serializable;
+
 /**
  *
  * @author marco
  */
-public class FriendsToAdd {
+public class FriendsToAdd implements Serializable{
     public Client newFriend;
     public FriendsToAdd sig;
     public FriendsToAdd ant;

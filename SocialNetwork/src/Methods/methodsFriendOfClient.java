@@ -6,12 +6,13 @@
 package Methods;
 
 import Classes.*;
+import java.io.Serializable;
 
 /**
  *
  * @author andre
  */
-public class methodsFriendOfClient {
+public class methodsFriendOfClient implements Serializable{
     
     public FriendOfClient head;
     

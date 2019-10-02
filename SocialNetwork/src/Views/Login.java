@@ -6,9 +6,9 @@ import Methods.*;
 import Views.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.text.*;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,6 +38,21 @@ public class Login extends javax.swing.JFrame {
 //Initialize methods with the Frame
     public Login() {
         try {
+            try {
+              cretaAllFiles();
+              } catch (IOException ex) {
+                  JOptionPane.showMessageDialog(null, "Error files");
+              } catch (ClassNotFoundException ex) {
+                  JOptionPane.showMessageDialog(null, "Error files");
+              }
+            try {
+                loadAllFiles();
+              } catch (IOException ex) {
+                  JOptionPane.showMessageDialog(null, "Error files");
+              }
+                catch (ClassNotFoundException ex) {
+                      JOptionPane.showMessageDialog(null, "Error files");
+                  }
             initComponents();
             creatUserAdmin();
             createUser();
@@ -245,6 +260,7 @@ public class Login extends javax.swing.JFrame {
             public void run() {
                 new Login().setVisible(true);
                 
+                
             }
         });
     }
@@ -401,6 +417,122 @@ public class Login extends javax.swing.JFrame {
          }
         } catch (Exception e) {
         }
-        
+    }
+    
+    public void cretaAllFiles() throws FileNotFoundException, IOException, ClassNotFoundException{
+        //Insert All users
+        metClient.InsertOrdered("lestertb", "123", "CR", "Santa Clara", 01, "Lester", "Trejos", "Bermúdez", "");
+        metClient.InsertOrdered("JuanR", "1234", "CR", "Santa Clara", 02, "Juan", "Rodriguez", "Rodriguez", "");
+        metClient.InsertOrdered("Raul", "12345", "CR", "Santa Clara", 03, "Raul", "Acuña", "Acuña", "");
+        metClient.InsertOrdered("AndresS", "123456", "CR", "Santa Clara", 04, "Andres", "Salas", "Salas", "");
+        metClient.InsertOrdered("PedroF", "1234567", "CR", "Santa Clara", 05, "Pedro", "Flores", "Flores", "");
+        metClient.InsertOrdered("DanielaS", "12345678", "CR", "Santa Clara", 06, "Daniela", "Soto", "Soto", "");
+        FileOutputStream out = new FileOutputStream("insertUsers.txt");
+        ObjectOutputStream outting = new ObjectOutputStream(out);
+        outting.writeObject(metClient);
+        outting.flush();
+        //Insert All Events
+        Date testDate1 = null; 
+            try {
+                String fecha = "05/05/2020";
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                String date = fecha;
+                try{
+                    testDate1 = df.parse(date);
+                } catch (Exception e){
+                    JOptionPane.showMessageDialog(null, "Invalid formar, Enter(dd/MM/yyyy)");
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Invalid Date , Enter(dd/MM/yyyy)");
+            }
+        Date testDate2 = null; 
+            try {
+                String fecha = "06/05/2020";
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                String date = fecha;
+                try{
+                    testDate2 = df.parse(date);
+                } catch (Exception e){
+                    JOptionPane.showMessageDialog(null, "Invalid formar, Enter(dd/MM/yyyy)");
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Invalid Date , Enter(dd/MM/yyyy)");
+            }
+         Date testDate3 = null; 
+            try {
+                String fecha = "07/05/2020";
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                String date = fecha;
+                try{
+                    testDate3 = df.parse(date);
+                } catch (Exception e){
+                    JOptionPane.showMessageDialog(null, "Invalid formar, Enter(dd/MM/yyyy)");
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Invalid Date , Enter(dd/MM/yyyy)");
+            }
+        Date testDate4 = null; 
+            try {
+                String fecha = "08/05/2020";
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                String date = fecha;
+                try{
+                    testDate4 = df.parse(date);
+                } catch (Exception e){
+                    JOptionPane.showMessageDialog(null, "Invalid formar, Enter(dd/MM/yyyy)");
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Invalid Date , Enter(dd/MM/yyyy)");
+            }
+         Date testDate5 = null; 
+            try {
+                String fecha = "09/05/2020";
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                String date = fecha;
+                try{
+                    testDate5 = df.parse(date);
+                } catch (Exception e){
+                    JOptionPane.showMessageDialog(null, "Invalid formar, Enter(dd/MM/yyyy)");
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Invalid Date , Enter(dd/MM/yyyy)");
+            }
+            Date testDate6 = null; 
+            try {
+                String fecha = "10/05/2020";
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                String date = fecha;
+                try{
+                    testDate6 = df.parse(date);
+                } catch (Exception e){
+                    JOptionPane.showMessageDialog(null, "Invalid formar, Enter(dd/MM/yyyy)");
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Invalid Date , Enter(dd/MM/yyyy)");
+            }
+        metEvent.InsertOrdered(1, "Evento1", "Es el evento1", "Santa Clara", testDate1, "Pending", "lestertb");
+        metEvent.InsertOrdered(2, "Evento2", "Es el evento2", "Santa Clara", testDate2, "Pending", "lestertb");
+        metEvent.InsertOrdered(3, "Evento3", "Es el evento3", "Santa Clara", testDate3, "Pending", "lestertb");
+        metEvent.InsertOrdered(4, "Evento4", "Es el evento4", "Santa Clara", testDate4, "Pending", "lestertb");
+        metEvent.InsertOrdered(5, "Evento5", "Es el evento5", "Santa Clara", testDate5, "Pending", "PedroF");
+        metEvent.InsertOrdered(6, "Evento6", "Es el evento6", "Santa Clara", testDate6, "Pending", "DanielaS");
+        FileOutputStream out2 = new FileOutputStream("insertEvents.txt");
+        ObjectOutputStream outting2 = new ObjectOutputStream(out2);
+        outting2.writeObject(metEvent);
+        outting2.flush();
+    }
+    
+    public void loadAllFiles() throws FileNotFoundException, IOException, ClassNotFoundException{
+        //Load files
+        ObjectInputStream read = new ObjectInputStream(new FileInputStream("insertUsers.txt"));
+        methodsClient readClient = (methodsClient) read.readObject();
+        ObjectInputStream read2 = new ObjectInputStream(new FileInputStream("insertEvents.txt"));
+        methodsEvents readEvents = (methodsEvents) read2.readObject();
     }
 }

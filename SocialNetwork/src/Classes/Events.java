@@ -5,13 +5,14 @@
  */
 package Classes;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author marco
  */
-public class Events {
+public class Events implements Serializable{
     public int  id_event;
     public String eventName;
     public String eventDescription;

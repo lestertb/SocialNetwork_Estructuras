@@ -2,13 +2,14 @@
 package Methods;
 
 import Classes.Message;
+import java.io.Serializable;
 
 
 /**
  *
  * @author andrey
  */
-public class methodsMessage {
+public class methodsMessage implements Serializable{
     public Message head; //indicate first nodo of list
     
     public static methodsMessage instance = null;

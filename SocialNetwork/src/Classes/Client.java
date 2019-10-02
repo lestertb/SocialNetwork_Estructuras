@@ -1,5 +1,7 @@
 package Classes;
 
+import java.io.Serializable;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,7 +13,7 @@ package Classes;
  * @author marco 
  */
 //Class to create Users
-public class Client {
+public class Client implements Serializable{
 
     public Client sig = null;
 

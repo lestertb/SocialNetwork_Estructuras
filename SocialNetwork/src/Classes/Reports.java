@@ -5,11 +5,13 @@
  */
 package Classes;
 
+import java.io.Serializable;
+
 /**
  *
  * @author marco
  */
-public class Reports {
+public class Reports implements Serializable{
   public int id_Report;
   public String title;
   public String clientObservation;

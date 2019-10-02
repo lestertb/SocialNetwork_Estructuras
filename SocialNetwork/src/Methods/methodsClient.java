@@ -7,13 +7,14 @@ package Methods;
 
 import Classes.Client;
 import Views.*;
+import java.io.Serializable;
 import javax.swing.*;
 
 /**
  *
  * @author Lester Trejos
  */
-public class methodsClient {
+public class methodsClient implements Serializable{
     // Creation of varibles to carry the first nodo and the lastone
     public Client head, last;
  

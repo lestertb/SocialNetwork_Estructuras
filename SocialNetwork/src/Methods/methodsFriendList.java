@@ -1,12 +1,13 @@
 package Methods;
 
 import Classes.*;
+import java.io.Serializable;
 import javax.swing.JOptionPane;
 /**
  *
  * @author andrey
  */
-public class methodsFriendList {
+public class methodsFriendList implements Serializable{
     public FriendList head, last;
     
     public static methodsFriendList instance = null;
