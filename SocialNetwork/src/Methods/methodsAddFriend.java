@@ -127,11 +127,11 @@ public class methodsAddFriend implements Serializable{
     
     }
      
-     FriendsToAdd latest;//Final of list
+   
      public boolean addFriends(Client user,String listName,String userName){
         
         if(searchFriends(user, listName, userName)!=null){
-            JOptionPane.showMessageDialog(null, "Frienda already added in this list");
+            JOptionPane.showMessageDialog(null, "Friend is already added in this list");
             return false;
         }
         
