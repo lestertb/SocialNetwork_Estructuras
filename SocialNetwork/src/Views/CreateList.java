@@ -55,7 +55,7 @@ public class CreateList extends javax.swing.JFrame {
         txtListName1 = new javax.swing.JTextField();
         txtFriendName = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        btnCreate1 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         txtListToDelete = new javax.swing.JTextField();
@@ -151,10 +151,10 @@ public class CreateList extends javax.swing.JFrame {
 
         jLabel6.setText("Friend to Add:");
 
-        btnCreate1.setText("Add");
-        btnCreate1.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreate1ActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
@@ -176,7 +176,7 @@ public class CreateList extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(121, 121, 121)
-                .addComponent(btnCreate1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -191,7 +191,7 @@ public class CreateList extends javax.swing.JFrame {
                     .addComponent(txtFriendName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
-                .addComponent(btnCreate1)
+                .addComponent(btnAdd)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -439,7 +439,7 @@ public class CreateList extends javax.swing.JFrame {
         Client user = metClient.searchXUserName(lblUser.getText());
         String listName = txtListName.getText();
         String description = txtDescription.getText();
-        boolean inserted = metAddFriend.insertList( listName, description,user);
+        boolean inserted = metAddFriend.createList1(user,listName, description);
         if(inserted==true){
             JOptionPane.showMessageDialog(null,"List Inserted");
         }else{
@@ -451,7 +451,7 @@ public class CreateList extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnCreateActionPerformed
 
-    private void btnCreate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreate1ActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         if (txtListName1.getText().isEmpty() || txtFriendName.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Empty Field");
             }else{
@@ -461,7 +461,7 @@ public class CreateList extends javax.swing.JFrame {
             Client result = metClient.searchXUserName(Friend);
              if (result != null) {
                     try {
-                        boolean inserted = metAddFriend.addFriendToSpecificList(user, listName, Friend);
+                        boolean inserted = metAddFriend.addFriends(user, listName, Friend);
                         if(inserted == true){
                             JOptionPane.showMessageDialog(null, "Friend Inserted");
                         } 
@@ -475,7 +475,7 @@ public class CreateList extends javax.swing.JFrame {
                 } 
        }
         
-    }//GEN-LAST:event_btnCreate1ActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteFriendListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteFriendListActionPerformed
         Client user = metClient.searchXUserName(lblUser.getText());
@@ -561,8 +561,8 @@ public class CreateList extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCreate;
-    private javax.swing.JButton btnCreate1;
     private javax.swing.JButton btnDeleteFriend;
     private javax.swing.JButton btnDeleteFriendList;
     private javax.swing.JButton btnModified;

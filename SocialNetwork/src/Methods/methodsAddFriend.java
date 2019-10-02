@@ -48,31 +48,9 @@ public class methodsAddFriend {
         }
         return false;
      }
-     public boolean insertList(String listName, String description, Client user) {
-        
-            FriendList newList = new FriendList(listName, description);
-             if(metClient.searchXUserName(user.userName)==null){//Checking if the user exists
-              return false;
-         }
-
-        if (user.nextFriendList == null) {
-            user.nextFriendList = newList;
-            return true;
-        } else {
-
-            FriendList aux = user.nextFriendList;
-
-            while (aux.next != null) {
-                aux = aux.next;
-            }
-            aux.next = newList;
-            return true;
-        }
-        return false;
-    }
      
      
-     public FriendList searchFriendInAListName(Client userName,String listName,String friend) {
+   public FriendList searchFriendInAListName(Client userName,String listName,String friend) {
         System.out.println("1");
         FriendList list = metFriendList.searchSpecificFriendlist(userName, listName); 
         Client userFriend = metClient.searchXUserName(friend);
@@ -156,7 +134,122 @@ public class methodsAddFriend {
       return false;
     }
      
-     
+     public boolean addFriends(Client user,String listName,String userName){
+         
+        if(searchList(user, listName)!=null){          
+            return false;
+        }
+        
+        FriendList list = searchList(user,listName); 
+        Client userFriend = metClient.searchXUserName(userName);
+        if(list!=null){
+            if(userFriend!=null){
+                FriendsToAdd auxFriends = list.nextFriend;
+                FriendsToAdd newAddFriend = new FriendsToAdd();
+                newAddFriend.newFriend =userFriend;
+                if(auxFriends==null){    
+                    list.nextFriend = newAddFriend;
+                    return true;
+                    
+                }
+                if(auxFriends.sig == null){
+                    list.nextFriend.sig = newAddFriend;
+                    newAddFriend.sig = list.nextFriend;
+                    return true;
+                    
+                }
+                
+               while(auxFriends.sig !=list.nextFriend){
+                    
+                    if(auxFriends.sig ==list.nextFriend){
+                        newAddFriend.sig= list.nextFriend;
+                        auxFriends.sig = newAddFriend;
+                        return true;
+                    }
+                    auxFriends =auxFriends.sig;    
+                } 
+                
+                if(auxFriends.sig == list.nextFriend){
+                    
+                    auxFriends.sig = newAddFriend;
+                    newAddFriend.sig = list.nextFriend;
+                    return true;
+                }
+                        
+            }
+                
+                
+        }
+        
+        return false;
+     }
+     public FriendList searchList(Client user,String listName){
+        if(user.nextFriendList ==null){
+            return null;
+        }
+        FriendList auxFL = user.nextFriendList;
+        while(auxFL!=null){
+            if(auxFL.getListName().equals(listName)){
+                return auxFL;
+            }
+            auxFL = auxFL.next;
+        }
+        return null;
+    
+    }
+     public Client searchFriends(Client user,String listName,String userName) {
+        
+        FriendList list = searchList(user,listName);
+        FriendsToAdd auxFriends = list.nextFriend;
+        
+        if(auxFriends==null){
+            return null;
+        }
+        if(auxFriends.sig==null){
+            if(!(auxFriends.newFriend.getUserName().equals(userName))){
+                return null;
+            }
+            
+        }
+        do{
+            if(auxFriends.newFriend.getUserName().equals(userName)){
+                return auxFriends.newFriend;
+                
+            }
+            auxFriends = auxFriends.sig;
+            
+        }while(auxFriends.sig!=list.nextFriend);
+        
+        if(auxFriends.newFriend.getUserName().equals(userName)){
+            return auxFriends.newFriend;
+        }
+        
+        
+        return null;
+    }
+     public boolean createList1(Client user,String listName,String description){
+        if(searchList(user,listName)==null){
+            FriendList newFriendList = new FriendList(listName, description);
+            if(user.nextFriendList==null){
+                user.nextFriendList = newFriendList;
+                return true;
+            }
+            FriendList auxFL = user.nextFriendList;
+            while(auxFL !=null){
+                if(auxFL.next == null){
+                    auxFL.next = newFriendList;
+                    return true;
+                }
+                auxFL = auxFL.next;
+            }
+            
+            
+            
+        }
+        
+        return false;
+        
+    }
      public boolean deleteACompleteFriendList(Client user,String listName){//This method delete a friend list by it's list name
         
         FriendList aux = user.nextFriendList;
