@@ -48,6 +48,29 @@ public class methodsAddFriend {
         }
         return false;
      }
+     public boolean insertList(String listName, String description, Client user) {
+        
+            FriendList newList = new FriendList(listName, description);
+             if(metClient.searchXUserName(user.userName)==null){//Checking if the user exists
+              return false;
+         }
+
+        if (user.nextFriendList == null) {
+            user.nextFriendList = newList;
+            return true;
+        } else {
+
+            FriendList aux = user.nextFriendList;
+
+            while (aux.next != null) {
+                aux = aux.next;
+            }
+            aux.next = newList;
+            return true;
+        }
+        return false;
+    }
+     
      
      public FriendList searchFriendInAListName(Client userName,String listName,String friend) {
         System.out.println("1");

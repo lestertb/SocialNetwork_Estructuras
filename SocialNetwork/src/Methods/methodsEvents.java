@@ -137,17 +137,13 @@ public class methodsEvents {
            JOptionPane.showMessageDialog(null, "This event is Realized");
            return false;
        }
-            System.out.println("1");
             if (aux == head){
-                System.out.println("2");
                 if(head.next == null){
-                    System.out.println("3");
                     head = last = null;
                 }else{
                 head = head.next;
                 head.prev = null;
                 }
-                System.out.println("3");
                 return true;
             }
             else if(aux == last){

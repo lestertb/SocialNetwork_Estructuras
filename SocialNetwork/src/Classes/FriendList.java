@@ -50,5 +50,8 @@ public class FriendList {
     public void setListDescription(String listDescription) {
         this.listDescription = listDescription;
     }
-    
+    @Override
+    public String toString() {
+        return "ListFriends{" + "List name=" + listName + ", List description=" + listDescription + '}';
+    }
 }

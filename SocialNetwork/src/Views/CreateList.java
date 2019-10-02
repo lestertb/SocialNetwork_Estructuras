@@ -439,7 +439,7 @@ public class CreateList extends javax.swing.JFrame {
         Client user = metClient.searchXUserName(lblUser.getText());
         String listName = txtListName.getText();
         String description = txtDescription.getText();
-        boolean inserted = metAddFriend.createList(user, listName, description);
+        boolean inserted = metAddFriend.insertList( listName, description,user);
         if(inserted==true){
             JOptionPane.showMessageDialog(null,"List Inserted");
         }else{
@@ -448,6 +448,7 @@ public class CreateList extends javax.swing.JFrame {
         txtListName.setText("");
         txtDescription.setText("");
         }
+        
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnCreate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreate1ActionPerformed
